@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaurav Kumar - Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="PortfolioCloude.css">
+
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursor-follower"></div>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">Gaurav's Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="floating-shapes">
+            <div class="shape shape-1">
+                <div class="cube"></div>
+            </div>
+            <div class="shape shape-2">
+                <div class="sphere"></div>
+            </div>
+            <div class="shape shape-3">
+                <div class="pyramid"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-greeting">Hello, I'm</div>
+                <h1><span class="highlight">Gaurav</span> Kumar</h1>
+                <div class="subtitle">A Passionate Web & React Developer</div>
+                <div class="typed-container">
+                    <span class="typed-text" id="typed-element"></span>
+                </div>
+                <div class="cta-buttons">
+                    <a href="https://www.linkedin.com/in/gaurav-kumar-6bb732230/"
+                        class="cta-button secondary">LinkedIn</a>
+                    <a href="https://github.com/tgaurav1k" class="cta-button secondary">GitHub</a>
+                    <a href="https://drive.google.com/file/d/10-D8vwyDZ-6TWMkVgVmG8cH3Mnnt7Oop/view"
+                        class="cta-button secondary">Resume</a>
+                    <a href="#projects" class="cta-button">View My Work</a>
+                    <a href="#contact" class="cta-button secondary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section-light">
+        <div class="container">
+            <h2 class="section-title fade-in">About <span class="gradient-text">Me</span></h2>
+            <div class="about-content fade-in">
+                <div class="about-text slide-in-left">
+                    <h3>Smart & Data-Driven Developer</h3>
+                    <p>I'm a passionate full-stack developer with a strong focus on creating innovative solutions that
+                        enhance user experiences. My approach is measurable, scalable, and oriented towards delivering
+                        strong impact through modern web technologies.</p>
+                    <p>I specialize in React development, frontend technologies, and have experience in AI/ML
+                        integration. My working method is punctual, dynamic, precise, and effective - always guided by
+                        data in making strategic technical decisions.</p>
+
+                    <div class="skills-container">
+                        <div class="skill-item">React</div>
+                        <div class="skill-item">JavaScript</div>
+                        <div class="skill-item">HTML/CSS</div>
+                        <div class="skill-item">Python</div>
+                        <div class="skill-item">Node.js</div>
+                        <div class="skill-item">AI/ML</div>
+                        <div class="skill-item">UI/UX</div>
+                        <div class="skill-item">Three.js</div>
+                    </div>
+                </div>
+                <div class="slide-in-right">
+                    <div class="project-icon">💻</div>
+                    <h4 style="margin-bottom: 1rem; font-size: 1.3rem;">Technical Expertise</h4>
+                    <p style="margin-bottom: 2rem;">Full-stack development with modern frameworks and libraries.
+                        Experience in machine learning integration and gesture recognition technologies.</p>
+
+                    <div class="project-icon">🎯</div>
+                    <h4 style="margin-bottom: 1rem; font-size: 1.3rem;">Focus Areas</h4>
+                    <p>Creating intuitive user interfaces, optimizing user experiences, and developing AI-driven
+                        applications that solve real-world problems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section-dark">
+        <div class="container">
+            <h2 class="section-title fade-in">Featured <span class="gradient-text">Projects</span></h2>
+            <div class="projects-grid fade-in">
+                <div class="project-card">
+                    <div class="project-icon">🎵</div>
+                    <div class="project-header">
+                        <div>
+                            <h3>Emotion Based Music Player</h3>
+                            <div class="project-meta">
+                                <span><strong>Duration:</strong> 3 months</span>
+                                <span><strong>Tech:</strong> Python, ML</span>
+                                <span><strong>Team:</strong> 5 Members</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        An innovative AI-driven music recommendation system designed to enhance emotional experiences.
+                        The application uses machine learning algorithms to analyze user emotions and provide
+                        personalized
+                        music recommendations, significantly reducing user search effort and improving music discovery.
+                    </p>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">🤖</div>
+                    <div class="project-header">
+                        <div>
+                            <h3>Gesture Buddy: Your Virtual Friend</h3>
+                            <div class="project-meta">
+                                <span><strong>Duration:</strong> 3 months</span>
+                                <span><strong>Tech:</strong> AI-HCI</span>
+                                <span><strong>Team:</strong> 5 Members</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Advanced gesture recognition system that enables users to control devices through intuitive hand
+                        movements.
+                        Improves safety and interaction experience by providing a touchless interface with high accuracy
+                        gesture detection and responsive UI feedback.
+                    </p>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">🎨</div>
+                    <div class="project-header">
+                        <div>
+                            <h3>Frontend Portfolio Projects</h3>
+                            <div class="project-meta">
+                                <span><strong>Period:</strong> Semester 4-5</span>
+                                <span><strong>Tech:</strong> HTML, CSS, JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Collection of responsive frontend projects showcasing proficiency in modern web technologies.
+                        Focused on clean UI design, interactive user experiences, and responsive layouts that work
+                        seamlessly across all devices and screen sizes.
+                    </p>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">⚡</div>
+                    <div class="project-header">
+                        <div>
+                            <h3>Full Stack Solutions</h3>
+                            <div class="project-meta">
+                                <span><strong>Period:</strong> Semester 6-8</span>
+                                <span><strong>Tech:</strong> React, Express, Node.js</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Comprehensive full-stack applications integrating backend logic with modern frontend frameworks.
+                        Developed scalable solutions using React for frontend rendering and Express/Node.js for robust
+                        backend services and API development.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section-light">
+        <div class="container">
+            <h2 class="section-title fade-in">Development <span class="gradient-text">Journey</span></h2>
+            <div class="timeline fade-in">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Advanced Full Stack Development</h3>
+                        <p><strong>Semester 6-8</strong></p>
+                        <p>Mastered full-stack development with React and Express. Built complex applications with
+                            integrated backend logic and modern frontend rendering. Gained expertise in API development
+                            and database management.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>AI/ML Integration Projects</h3>
+                        <p><strong>Recent Projects</strong></p>
+                        <p>Developed innovative AI-driven applications including emotion-based music recommendations and
+                            gesture recognition systems. Focused on human-computer interaction and machine learning
+                            implementation.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Frontend Specialization</h3>
+                        <p><strong>Semester 4-5</strong></p>
+                        <p>Built strong foundation in frontend technologies. Developed multiple responsive projects
+                            using HTML, CSS, and JavaScript. Gained proficiency in UI/UX design principles and
+                            responsive web development.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Web Development Foundation</h3>
+                        <p><strong>Early Academic Years</strong></p>
+                        <p>Started with core web technologies and programming fundamentals. Built first projects and
+                            discovered passion for creating interactive web experiences.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-dark">
+        <div class="container">
+            <h2 class="section-title fade-in">Let's <span class="gradient-text">Connect</span></h2>
+            <div class="contact-content fade-in">
+                <div class="contact-form slide-in-left">
+                    <form id="contactForm" action="https://formspree.io/f/xqabweve" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="Project Discussion" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5"
+                                placeholder="Tell me about your project or just say hello!" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                        <p id="formStatus" style="margin-top: 1rem;"></p>
+                    </form>
+
+                </div>
+                <div class="contact-info slide-in-right">
+                    <h3>Get in Touch</h3>
+                    <p>Ready to bring your ideas to life? Let's discuss how we can work together to create amazing
+                        digital experiences with modern technologies and innovative solutions.</p>
+                    <p><strong>Email:</strong> GauravThakur1k@gmail.com</p>
+                    <p><strong>Phone:</strong> +91 7807903562</p>
+                    <p><strong>Location:</strong> India</p>
+
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="LinkedIn">💼</a>
+                        <a href="#" class="social-link" title="GitHub">💻</a>
+                        <a href="#" class="social-link" title="Twitter">🐦</a>
+                        <a href="#" class="social-link" title="Email">✉️</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Gaurav Kumar | All Rights Reserved | Crafted with passion and modern technologies</p>
+        </div>
+    </footer>
+
+    <script src="PortFolioCloude.js"></script>
+</body>
+
+</html>
