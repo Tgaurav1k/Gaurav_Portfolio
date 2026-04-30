@@ -1,304 +1,406 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaurav Kumar - Developer Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="PortfolioCloude.css">
-        
-</head>     
-           
-<body>      
-    <!-- Loading Screen -->  
-    <div class="loading" id="loading">
-        <div class="loader"></div>
-    </div>             
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gaurav Kumar — Full-Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-    <!-- Custom Cursor -->
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-follower" id="cursor-follower"></div>
+<canvas class="bg-grain" id="grain" aria-hidden="true"></canvas>
+<div class="bg-orb a" aria-hidden="true"></div>
+<div class="bg-orb b" aria-hidden="true"></div>
+<div class="bg-orb c" aria-hidden="true"></div>
 
-    <!-- Floating Particles -->
-    <div class="particles" id="particles"></div>
+<div class="cursor-dot" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-    <header>
-        <nav class="container">
-            <div class="logo">Gaurav's Portfolio</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<div class="pre-loader" id="loader">
+<div class="pl-mark serif">G<sup style="font-style:normal">k</sup></div>
+<div class="pl-count" id="loaderCount">0</div>
+</div>
 
-    <section id="home" class="hero">
-        <div class="floating-shapes">
-            <div class="shape shape-1">
-                <div class="cube"></div>
-            </div>
-            <div class="shape shape-2">
-                <div class="sphere"></div>
-            </div>
-            <div class="shape shape-3">
-                <div class="pyramid"></div>
-            </div>
-        </div>
+<nav class="nav" id="nav">
+<a href="#top" class="nav-mark">Gaurav<sup>©</sup></a>
+<ul class="nav-links">
+<li><a href="#work" data-preview="img/amazon-1.png?v=3">Work</a></li>
+<li><a href="#about" data-preview="img/dashbaord_prl.png">About</a></li>
+<li><a href="#services" data-preview="assets/gds-1.png">Services</a></li>
+<li><a href="#contact" data-preview="assets/neomail-2.png">Contact</a></li>
+</ul>
+<a href="#contact" class="nav-cta"><span class="dot"></span>Available 2026</a>
+<div class="nav-peek" id="navPeek" aria-hidden="true"><img id="navPeekImg" src="" alt=""></div>
+</nav>
 
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-greeting">Hello, I'm</div>
-                <h1><span class="highlight">Gaurav</span> Kumar</h1>
-                <div class="subtitle">A Passionate Web & React Developer</div>
-                <div class="typed-container">
-                    <span class="typed-text" id="typed-element"></span>
-                </div>
-                <div class="cta-buttons">
-                    <a href="https://www.linkedin.com/in/gaurav-kumar-6bb732230/"
-                        class="cta-button secondary">LinkedIn</a>
-                    <a href="https://github.com/tgaurav1k" class="cta-button secondary">GitHub</a>
-                    <a href="https://drive.google.com/file/d/1aZIs40vMgyK2CZuWUorF8AuWTEpmEFLU/view?usp=drive_link"
-                        class="cta-button secondary">Resume</a>
-                    <a href="#projects" class="cta-button">View My Work</a>
-                    <a href="#contact" class="cta-button secondary">Get In Touch</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<main id="top">
 
-    <section id="about" class="section-light">
-        <div class="container">
-            <h2 class="section-title fade-in">About <span class="gradient-text">Me</span></h2>
-            <div class="about-content fade-in">
-                <div class="about-text slide-in-left">
-                    <h3>Smart & Data-Driven Developer</h3>
-                    <p>I'm a passionate full-stack developer with a strong focus on creating innovative solutions that
-                        enhance user experiences. My approach is measurable, scalable, and oriented towards delivering
-                        strong impact through modern web technologies.</p>
-                    <p>I specialize in React development, frontend technologies, and have experience in AI/ML
-                        integration. My working method is punctual, dynamic, precise, and effective - always guided by
-                        data in making strategic technical decisions.</p>
+<section class="hero">
 
-                    <div class="skills-container">
-                        <div class="skill-item">React</div>
-                        <div class="skill-item">JavaScript</div>
-                        <div class="skill-item">HTML/CSS</div>
-                        <div class="skill-item">Python</div>
-                        <div class="skill-item">Node.js</div>
-                        <div class="skill-item">AI/ML</div>
-                        <div class="skill-item">UI/UX</div>
-                        <div class="skill-item">Three.js</div>
-                    </div>
-                </div>
-                <div class="slide-in-right">
-                    <div class="project-icon">💻</div>
-                    <h4 style="margin-bottom: 1rem; font-size: 1.3rem;">Technical Expertise</h4>
-                    <p style="margin-bottom: 2rem;">Full-stack development with modern frameworks and libraries.
-                        Experience in machine learning integration and gesture recognition technologies.</p>
+<!-- Social sidebar -->
+<div class="hero-socials">
+<a href="https://github.com/tgaurav1k" target="_blank" rel="noopener" class="h-social" aria-label="GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg></a>
+<a href="https://www.linkedin.com/in/gaurav-kumar-6bb732230/" target="_blank" rel="noopener" class="h-social" aria-label="LinkedIn"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+<a href="mailto:Gauravthakur1k@gmail.com" class="h-social" aria-label="Email"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+</div>
 
-                    <div class="project-icon">🎯</div>
-                    <h4 style="margin-bottom: 1rem; font-size: 1.3rem;">Focus Areas</h4>
-                    <p>Creating intuitive user interfaces, optimizing user experiences, and developing AI-driven
-                        applications that solve real-world problems.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Two-column inner: text left, image right -->
+<div class="hero-inner">
 
-    <section id="projects" class="section-dark">
-        <div class="container">
-            <h2 class="section-title fade-in">Featured <span class="gradient-text">Projects</span></h2>
-            <div class="projects-grid fade-in">
-                <div class="project-card">
-                    <div class="project-icon">🎵</div>
-                    <div class="project-header">
-                        <div>
-                            <h3>Emotion Based Music Player</h3>
-                            <div class="project-meta">
-                                <span><strong>Duration:</strong> 3 months</span>
-                                <span><strong>Tech:</strong> Python, ML</span>
-                                <span><strong>Team:</strong> 5 Members</span>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="project-description">
-                        An innovative AI-driven music recommendation system designed to enhance emotional experiences.
-                        The application uses machine learning algorithms to analyze user emotions and provide
-                        personalized
-                        music recommendations, significantly reducing user search effort and improving music discovery.
-                    </p>
-                </div>
+<div class="hero-text-col">
+<div class="hero-meta">
+<div class="col"><strong>Full-stack developer</strong>React · Node · Next.js<br>Finance dashboards · Amazon analytics</div>
+<div class="col" style="text-align:right"><strong>Based in India</strong>Bilaspur, HP<br>Working worldwide — IST/UTC+5:30</div>
+</div>
 
-                <div class="project-card">
-                    <div class="project-icon">🤖</div>
-                    <div class="project-header">
-                        <div>
-                            <h3>Gesture Buddy: Your Virtual Friend</h3>
-                            <div class="project-meta">
-                                <span><strong>Duration:</strong> 3 months</span>
-                                <span><strong>Tech:</strong> AI-HCI</span>
-                                <span><strong>Team:</strong> 5 Members</span>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="project-description">
-                        Advanced gesture recognition system that enables users to control devices through intuitive hand
-                        movements.
-                        Improves safety and interaction experience by providing a touchless interface with high accuracy
-                        gesture detection and responsive UI feedback.
-                    </p>
-                </div>
+<h1 class="hero-title">
+<div class="line"><span>The full-stack</span></div>
+<div class="line"><span><em class="it">developer</em> you've</span></div>
+<div class="line"><span>been <em class="it">eager</em></span></div>
+<div class="line"><span>to work with.</span></div>
+</h1>
 
-                <div class="project-card">
-                    <div class="project-icon">🎨</div>
-                    <div class="project-header">
-                        <div>
-                            <h3>Frontend Portfolio Projects</h3>
-                            <div class="project-meta">
-                                <span><strong>Period:</strong> Semester 4-5</span>
-                                <span><strong>Tech:</strong> HTML, CSS, JavaScript</span>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="project-description">
-                        Collection of responsive frontend projects showcasing proficiency in modern web technologies.
-                        Focused on clean UI design, interactive user experiences, and responsive layouts that work
-                        seamlessly across all devices and screen sizes.
-                    </p>
-                </div>
+<div class="hero-bottom">
+<p class="hero-tag">A portfolio of finance automation, analytics platforms and end-to-end web products — built with React, Node and a quiet obsession for craft.</p>
+<div class="hero-scroll">Scroll <span class="ar">↓</span></div>
+</div>
+</div>
 
-                <div class="project-card">
-                    <div class="project-icon">⚡</div>
-                    <div class="project-header">
-                        <div>
-                            <h3>Full Stack Solutions</h3>
-                            <div class="project-meta">
-                                <span><strong>Period:</strong> Semester 6-8</span>
-                                <span><strong>Tech:</strong> React, Express, Node.js</span>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="project-description">
-                        Comprehensive full-stack applications integrating backend logic with modern frontend frameworks.
-                        Developed scalable solutions using React for frontend rendering and Express/Node.js for robust
-                        backend services and API development.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Right: personal image -->
+<div class="hero-img-col">
+<img src="img/personalimage.png" alt="Gaurav Kumar" class="hero-portrait">
+<div class="hero-img-grad"></div>
+<div class="hero-badge" aria-hidden="true">
+<svg class="badge-ring" viewBox="0 0 200 200">
+<defs><path id="circlePath" d="M 100,100 m -72,0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0"/></defs>
+<text class="badge-text"><textPath href="#circlePath" startOffset="0%">AVAILABLE FOR PROJECTS ✦ AVAILABLE FOR PROJECTS ✦ </textPath></text>
+</svg>
+<div class="badge-center">·</div>
+</div>
+</div>
 
-    <section id="experience" class="section-light">
-        <div class="container">
-            <h2 class="section-title fade-in">Development <span class="gradient-text">Journey</span></h2>
-            <div class="timeline fade-in">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Advanced Full Stack Development</h3>
-                        <p><strong>Semester 6-8</strong></p>
-                        <p>Mastered full-stack development with React and Express. Built complex applications with
-                            integrated backend logic and modern frontend rendering. Gained expertise in API development
-                            and database management.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>AI/ML Integration Projects</h3>
-                        <p><strong>Recent Projects</strong></p>
-                        <p>Developed innovative AI-driven applications including emotion-based music recommendations and
-                            gesture recognition systems. Focused on human-computer interaction and machine learning
-                            implementation.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Frontend Specialization</h3>
-                        <p><strong>Semester 4-5</strong></p>
-                        <p>Built strong foundation in frontend technologies. Developed multiple responsive projects
-                            using HTML, CSS, and JavaScript. Gained proficiency in UI/UX design principles and
-                            responsive web development.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Web Development Foundation</h3>
-                        <p><strong>Early Academic Years</strong></p>
-                        <p>Started with core web technologies and programming fundamentals. Built first projects and
-                            discovered passion for creating interactive web experiences.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+</div>
 
-    <section id="contact" class="section-dark">
-        <div class="container">
-            <h2 class="section-title fade-in">Let's <span class="gradient-text">Connect</span></h2>
-            <div class="contact-content fade-in">
-                <div class="contact-form slide-in-left">
-                    <form id="contactForm" action="https://formspree.io/f/xqabweve" method="POST">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" placeholder="Project Discussion" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5"
-                                placeholder="Tell me about your project or just say hello!" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Send Message</button>
-                        <p id="formStatus" style="margin-top: 1rem;"></p>
-                    </form>
+</section>
 
-                </div>
-                <div class="contact-info slide-in-right">
-                    <h3>Get in Touch</h3>
-                    <p>Ready to bring your ideas to life? Let's discuss how we can work together to create amazing
-                        digital experiences with modern technologies and innovative solutions.</p>
-                    <p><strong>Email:</strong> GauravThakur1k@gmail.com</p>
-                    <p><strong>Phone:</strong> +91 7807903562</p>
-                    <p><strong>Location:</strong> India</p>
+<div class="marquee" aria-hidden="true">
+<div class="marquee-track">
+<span>Available for work <span class="star">✦</span> 2026 <span class="star">✦</span> React <span class="star">✦</span> Node.js <span class="star">✦</span> Next.js <span class="star">✦</span> MongoDB <span class="star">✦</span> REST APIs <span class="star">✦</span> Full-Stack Development <span class="star">✦</span> Open to Freelance <span class="star">✦</span></span>
+<span>Available for work <span class="star">✦</span> 2026 <span class="star">✦</span> React <span class="star">✦</span> Node.js <span class="star">✦</span> Next.js <span class="star">✦</span> MongoDB <span class="star">✦</span> REST APIs <span class="star">✦</span> Full-Stack Development <span class="star">✦</span> Open to Freelance <span class="star">✦</span></span>
+</div>
+</div>
 
-                    <div class="social-links">
-                        <a href="#" class="social-link" title="LinkedIn">💼</a>
-                        <a href="#" class="social-link" title="GitHub">💻</a>
-                        <a href="#" class="social-link" title="Twitter">🐦</a>
-                        <a href="#" class="social-link" title="Email">✉️</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="hero-cards reveal">
+<div class="hcard">
+<div class="hcard-label">Expertise</div>
+<div class="skill-bars">
+<div class="sbar"><span class="sbar-name">React.js</span><div class="sbar-track"><div class="sbar-fill" data-w="95"></div></div><span class="sbar-pct">95%</span></div>
+<div class="sbar"><span class="sbar-name">Node.js</span><div class="sbar-track"><div class="sbar-fill" data-w="90"></div></div><span class="sbar-pct">90%</span></div>
+<div class="sbar"><span class="sbar-name">Next.js</span><div class="sbar-track"><div class="sbar-fill" data-w="88"></div></div><span class="sbar-pct">88%</span></div>
+<div class="sbar"><span class="sbar-name">TypeScript</span><div class="sbar-track"><div class="sbar-fill" data-w="82"></div></div><span class="sbar-pct">82%</span></div>
+<div class="sbar"><span class="sbar-name">PostgreSQL</span><div class="sbar-track"><div class="sbar-fill" data-w="80"></div></div><span class="sbar-pct">80%</span></div>
+</div>
+</div>
+<div class="hcard">
+<div class="hcard-label">Experience</div>
+<div class="exp-stats">
+<div class="exp-stat"><div class="exp-num">2+</div><div class="exp-name">Years</div><div class="exp-sub">Building digital solutions</div></div>
+<div class="exp-stat"><div class="exp-num">10+</div><div class="exp-name">Projects</div><div class="exp-sub">Completed successfully</div></div>
+<div class="exp-stat"><div class="exp-num">04+</div><div class="exp-name">Clients</div><div class="exp-sub">Worldwide</div></div>
+</div>
+</div>
+<div class="hcard">
+<div class="hcard-label">Technologies</div>
+<div class="tech-grid">
+<div class="tech-ico" title="React"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"></div>
+<div class="tech-ico" title="Next.js"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-plain.svg" alt="Next.js"></div>
+<div class="tech-ico" title="JavaScript"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"></div>
+<div class="tech-ico" title="Node.js"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"></div>
+<div class="tech-ico" title="MongoDB"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB"></div>
+<div class="tech-ico" title="PostgreSQL"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"></div>
+<div class="tech-ico" title="Docker"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"></div>
+<div class="tech-ico" title="Git"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"></div>
+</div>
+</div>
+</div>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Gaurav Kumar | All Rights Reserved | Crafted with passion and modern technologies</p>
-        </div>
-    </footer>
+<section class="sec-pad" id="about">
+<div class="about">
+<div class="about-head reveal">
+<div class="eyebrow">About</div>
+<h2>Crafting software that quietly does the heavy lifting.</h2>
+</div>
+<div class="about-body reveal">
+<p>I'm <strong>Gaurav Kumar</strong> — a full-stack developer at <strong>B3 Solution</strong> shipping React + Node products that real finance teams use every day.</p>
+<p>I built the company's flagship <strong>Amazon Analytics</strong> platform — six modules tracking ACOS, ROAS, CPC and ad spend — alongside four finance dashboards that <strong>cut reporting time by 70%</strong> and <strong>automated 60%+ of manual workflows</strong>.</p>
+<p>End-to-end ownership from architecture to deployment. Quiet code, fast UI, business outcomes.</p>
 
-    <script src="PortFolioCloude.js"></script>
+<div class="about-stats">
+<div class="about-stat reveal"><div class="num">04+</div><div class="lbl">Finance dashboards</div></div>
+<div class="about-stat reveal"><div class="num">70%</div><div class="lbl">Reporting time cut</div></div>
+<div class="about-stat reveal"><div class="num">60%+</div><div class="lbl">Workflow automated</div></div>
+<div class="about-stat reveal"><div class="num">10+</div><div class="lbl">Live web apps</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="sec-pad" id="work">
+<div class="works-head reveal">
+<div>
+<div class="eyebrow" style="margin-bottom:1.5rem">Selected Work</div>
+<h2>A few things <em style="font-family:Geist,sans-serif;font-style:normal;font-weight:300;color:rgba(237,237,237,.5)">— 2024 / 2026</em></h2>
+</div>
+<div class="count">06 / Projects</div>
+</div>
+
+<div class="works-list">
+
+<a class="work featured reveal" data-cat="Finance · Analytics">
+<div class="work-num">01</div>
+<div class="work-body">
+<div class="work-frame reveal-img" data-tabset="amz">
+<div class="amz-tabs">
+<button class="amz-tab active" data-tabset="amz" data-target="amzMain" data-src="img/amazon-1.png?v=3">Ad Reports</button>
+<button class="amz-tab" data-tabset="amz" data-target="amzMain" data-src="img/amazon-2.png?v=3">Comparison</button>
+<button class="amz-tab" data-tabset="amz" data-target="amzMain" data-src="img/amazon2.png">Trend</button>
+<button class="amz-tab" data-tabset="amz" data-target="amzMain" data-src="img/Screenshot 2026-04-30 124007.png">ASIN · Keyword</button>
+</div>
+<img src="img/amazon-1.png?v=3" alt="Amazon Analytics Dashboard" id="amzMain">
+</div>
+<div class="work-foot">
+<div>
+<div class="work-tags"><span class="work-tag">Flagship · 2026</span><span class="work-tag">Node.js · PostgreSQL · Puppeteer</span><span class="work-tag">B3 Solution</span></div>
+<h3>Amazon India Analytics Dashboard</h3>
+<ul class="work-desc work-bullets">
+<li>7 pages — Ad Reports, Comparison, Trend, Master, ASIN to Keyword &amp; ASIN Engine</li>
+<li>Puppeteer Stealth auto-fetches keywords for 18 ASINs every Monday — zero manual login</li>
+<li>3,518+ keyword rows with full rank history stored in PostgreSQL</li>
+<li>Week-over-week rank: Organic vs Sponsored side-by-side with trend chart</li>
+<li>ROAS, ad spend, CPR scores, sessions &amp; page views in one place</li>
+<li>3–4 hrs/week of manual reporting → under 5 minutes</li>
+</ul>
+</div>
+<div class="work-arrow">↗</div>
+</div>
+</div>
+</a>
+
+<a class="work featured reveal" data-cat="Full-stack" href="https://neomail-frontend.vercel.app" target="_blank" rel="noopener">
+<div class="work-num">02</div>
+<div class="work-body">
+<div class="work-frame reveal-img" data-tabset="neo">
+<div class="amz-tabs">
+<button class="amz-tab active" data-tabset="neo" data-target="neoMain" data-src="assets/neomail-1.png">Landing</button>
+<button class="amz-tab" data-tabset="neo" data-target="neoMain" data-src="assets/neomail-2.png">Inbox</button>
+</div>
+<img id="neoMain" src="assets/neomail-1.png" alt="NeoMail email client" style="object-fit:cover;object-position:top center">
+</div>
+<div class="work-foot">
+<div>
+<div class="work-tags"><span class="work-tag">Full-stack · MERN</span><span class="work-tag">React · Redux · Node.js</span><span class="work-tag">Live · Vercel</span></div>
+<h3>NeoMail — Email, reimagined</h3>
+<ul class="work-desc work-bullets">
+<li>JWT auth with HTTP-only cookies — tokens never exposed to JavaScript, preventing XSS</li>
+<li>Separate frontend &amp; backend on Vercel with CORS configured for cross-origin cookie auth</li>
+<li>MongoDB TTL index auto-expires old emails — no cron jobs, no extra code</li>
+<li>Welcome emails seeded on first login — inbox always feels live, never empty</li>
+<li>Redux Toolkit for global state: auth, inbox, search, compose modal &amp; sidebar</li>
+<li>Fully mobile-responsive — sidebar drawer, full-screen compose, stacked email cards</li>
+</ul>
+</div>
+<div class="work-arrow">↗</div>
+</div>
+</div>
+</a>
+
+<a class="work featured reveal" data-cat="Frontend · SEO" href="https://graphicdesignservices.co/" target="_blank" rel="noopener">
+<div class="work-num">03</div>
+<div class="work-body">
+<div class="work-frame reveal-img" data-tabset="gds">
+<div class="amz-tabs">
+<button class="amz-tab active" data-tabset="gds" data-target="gdsMain" data-src="assets/gds-1.png">Hero</button>
+<button class="amz-tab" data-tabset="gds" data-target="gdsMain" data-src="assets/gds-2.png">About</button>
+</div>
+<img id="gdsMain" src="assets/gds-1.png" alt="Graphic Design Services" style="object-fit:contain;object-position:top center">
+</div>
+<div class="work-foot">
+<div>
+<div class="work-tags"><span class="work-tag">Next.js</span><span class="work-tag">SEO · 30k cities</span><span class="work-tag">Live</span></div>
+<h3>Graphic Design Services — USA</h3>
+<p class="work-desc">SEO-optimized multi-location platform serving 30,000+ US cities. +40% organic reach, −35% load time. <span style="color:rgba(237,237,237,.85);border-bottom:1px solid rgba(237,237,237,.3)">graphicdesignservices.co</span></p>
+</div>
+<div class="work-arrow">↗</div>
+</div>
+</div>
+</a>
+
+<a class="work featured reveal" data-cat="Finance · SaaS">
+<div class="work-num">04</div>
+<div class="work-body">
+<div class="work-frame reveal-img" data-tabset="fuel">
+<div class="amz-tabs">
+<button class="amz-tab active" data-tabset="fuel" data-target="fuelMain" data-src="img/dashbaord_prl.png">Dashboard</button>
+<button class="amz-tab" data-tabset="fuel" data-target="fuelMain" data-src="img/matrice_comparision.png">Metrics</button>
+<button class="amz-tab" data-tabset="fuel" data-target="fuelMain" data-src="img/user.png">Admin</button>
+</div>
+<img src="img/dashbaord_prl.png" alt="UK Petroleum Analytics Platform" id="fuelMain">
+</div>
+<div class="work-foot">
+<div>
+<div class="work-tags"><span class="work-tag">Finance · SaaS · 2026</span><span class="work-tag">React · Node · PostgreSQL</span><span class="work-tag">4 Clients · Live</span></div>
+<h3>UK Petroleum Analytics Platform</h3>
+<p class="work-desc">Multi-tenant SaaS for UK petrol-station chains — ingests live Sage 50/200 audit-journal data and surfaces real-time KPIs: Gross PPL, EBITDA, Net Profit, per-grade fuel volume and site ROI. Four production clients on a single codebase — zero rewrites per new client. Weekly P&L close: 3 hrs → 20 min.</p>
+</div>
+<div class="work-arrow">↗</div>
+</div>
+</div>
+</a>
+
+<a class="work featured reveal" data-cat="AI · SaaS">
+<div class="work-num">05</div>
+<div class="work-body">
+<div class="work-frame reveal-img" data-tabset="bulkgen" style="background:#111">
+<div class="amz-tabs">
+<button class="amz-tab active" data-tabset="bulkgen" data-target="bulkgenMain" data-src="img/dashboard.png">Dashboard</button>
+<button class="amz-tab" data-tabset="bulkgen" data-target="bulkgenMain" data-src="img/geneateimg.png">Generate</button>
+<button class="amz-tab" data-tabset="bulkgen" data-target="bulkgenMain" data-src="img/userimg.png">Users</button>
+<button class="amz-tab" data-tabset="bulkgen" data-target="bulkgenMain" data-src="img/manageadmin.png">Admins</button>
+</div>
+<img src="img/dashboard.png" alt="BulkGen AI Image Platform" id="bulkgenMain" style="object-fit:contain;object-position:top center;background:#111">
+</div>
+<div class="work-foot">
+<div>
+<div class="work-tags"><span class="work-tag">AI · SaaS · 2026</span><span class="work-tag">React · Node · PostgreSQL</span><span class="work-tag">Docker · Multi-tenant</span></div>
+<h3>BulkGen — AI Bulk Image Platform</h3>
+<ul class="work-desc work-bullets">
+<li>3-tier role system: superadmin → admin → user, each fully scoped — admins never see other admins' data</li>
+<li>Single prompt or Excel bulk upload → all images fired in parallel via Promise.all</li>
+<li>13 preset sizes across 8 aspect ratios up to 2048×2048, plus custom W×H input</li>
+<li>Prompt Enhancer — raw prompt rewritten by Qwen3-8B LLM before generation</li>
+<li>ZIP bulk download, real-time progress bar, full history with search</li>
+<li>Docker: Vite frontend built inside container, served by Express — single image, no separate web server</li>
+</ul>
+</div>
+<div class="work-arrow">↗</div>
+</div>
+</div>
+</a>
+
+<a class="work featured reveal" data-cat="Enterprise · SaaS">
+<div class="work-num">06</div>
+<div class="work-body">
+<div class="work-frame reveal-img" data-tabset="toolhub" style="background:#0f1117">
+<div class="amz-tabs">
+<button class="amz-tab active" data-tabset="toolhub" data-target="toolhubMain" data-src="img/dashboardtool.png">Dashboard</button>
+<button class="amz-tab" data-tabset="toolhub" data-target="toolhubMain" data-src="img/usertool.png">Users</button>
+<button class="amz-tab" data-tabset="toolhub" data-target="toolhubMain" data-src="img/categorytool.png">Categories</button>
+<button class="amz-tab" data-tabset="toolhub" data-target="toolhubMain" data-src="img/activitytool.png">Activity</button>
+</div>
+<img src="img/dashboardtool.png" alt="Toolhub Enterprise Platform" id="toolhubMain" style="object-fit:contain;object-position:top center;background:#0f1117">
+</div>
+<div class="work-foot">
+<div>
+<div class="work-tags"><span class="work-tag">Enterprise · SaaS · 2026</span><span class="work-tag">React · Node · TypeScript · Prisma</span><span class="work-tag">SSE · Docker · Turborepo</span></div>
+<h3>Toolhub — Enterprise Tool Access Platform</h3>
+<ul class="work-desc work-bullets">
+<li>3-tier RBAC: Superadmin → Admin → User with fully scoped data isolation at every layer</li>
+<li>Tool allowlist freeze — access snapshot on assignment prevents unintended access creep</li>
+<li>Real-time SSE notifications pushed instantly on any access change, persisted for offline users</li>
+<li>Transactional emails on every event: user created, access changed, password reset — with full tool lists</li>
+<li>Linked tool sync — provisions users on external platforms via API; non-blocking on failure</li>
+<li>Turborepo monorepo with shared <em style="font-style:normal;color:rgba(237,237,237,.85)">@toolhub/ui · config · auth · api-client</em> packages</li>
+</ul>
+</div>
+<div class="work-arrow">↗</div>
+</div>
+</div>
+</a>
+
+</div>
+</section>
+
+<section class="sec-pad services" id="services">
+<div class="services-head reveal">
+<div class="eyebrow">Services</div>
+<h2>What I do, in three columns.</h2>
+</div>
+<div class="services-grid">
+<div class="service reveal">
+<div class="service-num">01 / Build</div>
+<h3>Full-Stack Development</h3>
+<ul>
+<li>React · Next.js · TypeScript</li>
+<li>Node.js · Express · REST</li>
+<li>MongoDB · PostgreSQL</li>
+<li>Auth, JWT, RBAC</li>
+<li>Component-driven UI</li>
+<li>Architecture → deployment</li>
+</ul>
+</div>
+<div class="service reveal">
+<div class="service-num">02 / Analyze</div>
+<h3>Finance & Analytics Dashboards</h3>
+<ul>
+<li>Cash flow, P&L, revenue</li>
+<li>KPI roll-ups · drill-downs</li>
+<li>Excel ingest · CSV export</li>
+<li>Real-time reporting</li>
+<li>Approval workflows</li>
+<li>Reporting time ↓ 70%</li>
+</ul>
+</div>
+<div class="service reveal">
+<div class="service-num">03 / Scale</div>
+<h3>E-commerce Analytics</h3>
+<ul>
+<li>Amazon Ads · ACOS · ROAS</li>
+<li>Helium 10 Cerebro integration</li>
+<li>Bulk ASIN → keyword</li>
+<li>Campaign comparison</li>
+<li>Multi-marketplace ready</li>
+<li>SEO-first product sites</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="contact" id="contact">
+<div class="contact-grid reveal">
+<div>
+<div class="eyebrow contact-eyebrow">Get in touch</div>
+<a href="mailto:Gauravthakur1k@gmail.com" class="contact-mail">Gauravthakur1k<br>@gmail.com</a>
+</div>
+<div class="contact-side">
+<p>Open to <strong style="color:#ededed;font-weight:500">full-time roles, freelance projects</strong> and finance / e-commerce automation work.</p>
+<p><a href="https://www.linkedin.com/in/gaurav-kumar-6bb732230/" target="_blank" rel="noopener">LinkedIn ↗</a> &nbsp; <a href="https://github.com/tgaurav1k" target="_blank" rel="noopener">GitHub ↗</a></p>
+<p>+91 — 78079 03562</p>
+</div>
+</div>
+
+<div class="footer">
+<div class="footer-mark serif">Gaurav<sup style="font-style:normal;font-family:Geist,sans-serif;font-size:.18em;vertical-align:super;margin-left:.05em">©</sup></div>
+<div class="footer-meta">
+<div class="footer-socials">
+<a href="https://www.linkedin.com/in/gaurav-kumar-6bb732230/" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://github.com/tgaurav1k" target="_blank" rel="noopener">GitHub</a>
+</div>
+© 2026 Gaurav Kumar<br>
+Bilaspur, India · IST<br>
+Designed & built end-to-end
+</div>
+</div>
+</section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="premium.js"></script>
+<div class="page-wipe" id="pageWipe" aria-hidden="true"></div>
 </body>
-
 </html>
-
-
-
-
-
-
