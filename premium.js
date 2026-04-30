@@ -422,6 +422,28 @@ ScrollTrigger.create({
   }
 });
 
+// ---------- Mobile hamburger menu ----------
+(function () {
+  const btn = document.getElementById('navHamburger');
+  const overlay = document.getElementById('navOverlay');
+  if (!btn || !overlay) return;
+  function open() {
+    btn.classList.add('open');
+    overlay.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+    lenis.stop();
+  }
+  function close() {
+    btn.classList.remove('open');
+    overlay.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    lenis.start();
+  }
+  btn.addEventListener('click', () => btn.classList.contains('open') ? close() : open());
+  overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+})();
+
 // ---------- Contact mail line reveal ----------
 (function () {
   const m = document.querySelector('.contact-mail');
