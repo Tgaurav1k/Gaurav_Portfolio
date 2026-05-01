@@ -420,16 +420,21 @@ ScrollTrigger.create({
     btn.classList.add('open');
     overlay.classList.add('open');
     btn.setAttribute('aria-expanded', 'true');
-    lenis.stop();
   }
   function close() {
     btn.classList.remove('open');
     overlay.classList.remove('open');
     btn.setAttribute('aria-expanded', 'false');
-    lenis.start();
   }
   btn.addEventListener('click', () => btn.classList.contains('open') ? close() : open());
-  overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  overlay.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(a.getAttribute('href'));
+      close();
+      if (t) setTimeout(() => lenis.scrollTo(t, { offset: -80, duration: 1.2, easing: x => 1 - Math.pow(1 - x, 4) }), 60);
+    });
+  });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 })();
 
