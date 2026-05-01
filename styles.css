@@ -259,9 +259,10 @@ section{position:relative}
 .h-social:hover{color:#ededed;transform:translateY(-2px)}
 
 /* Hero cards row */
-.hero-cards{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(237,237,237,.08);border-bottom:1px solid rgba(237,237,237,.08)}
+.hero-cards{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid rgba(237,237,237,.08);border-bottom:1px solid rgba(237,237,237,.08)}
 .hcard{padding:1.4rem 2rem;border-right:1px solid rgba(237,237,237,.08);background:rgba(10,10,10,.75);backdrop-filter:blur(14px)}
-.hcard:last-child{border-right:none}
+.hcard:nth-child(2){border-right:none}
+.hcard:last-child{grid-column:1/-1;border-right:none;border-top:1px solid rgba(237,237,237,.08)}
 .hcard-label{font:600 .62rem/1 'Geist',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:rgba(237,237,237,.38);margin-bottom:.9rem}
 
 /* Skill bars */
