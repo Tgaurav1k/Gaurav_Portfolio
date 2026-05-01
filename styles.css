@@ -389,7 +389,7 @@ section{position:relative}
   .footer-meta{text-align:left}
   .footer-socials{justify-content:flex-start}
   .exp-stats{grid-template-columns:1fr 1fr}
-  .exp-stat:last-child{grid-column:span 2;border-right:none;padding-right:0;border-top:1px solid rgba(237,237,237,.07);padding-top:.5rem}
+  .exp-stat:last-child{grid-column:auto;border-right:none;padding-right:0}
 }
 
 /* ===== 375px — very small phones ===== */
@@ -425,9 +425,9 @@ section{position:relative}
   .exp-sub{font-size:.54rem}
   /* tech marquee */
   .tech-row{gap:1.2rem;animation-duration:22s}
-  .tech-ico{min-width:52px;max-width:64px;padding:.6rem .4rem}
-  .tech-ico img{width:22px;height:22px}
-  .tech-ico span{font-size:.5rem}
+  .tech-ico{min-width:60px;max-width:72px;padding:.75rem .5rem}
+  .tech-ico img{width:28px;height:28px}
+  .tech-ico span{font-size:.52rem}
 }
 
 /* 480px — small phones */
@@ -441,10 +441,10 @@ section{position:relative}
   .exp-name{font-size:.54rem}
   .exp-sub{font-size:.5rem}
   /* tech */
-  .tech-row{gap:.8rem;animation-duration:18s}
-  .tech-ico{min-width:44px;max-width:54px;padding:.5rem .3rem}
-  .tech-ico img{width:18px;height:18px}
-  .tech-ico span{font-size:.46rem;letter-spacing:.02em}
+  .tech-row{gap:.9rem;animation-duration:18s}
+  .tech-ico{min-width:54px;max-width:64px;padding:.65rem .4rem}
+  .tech-ico img{width:26px;height:26px}
+  .tech-ico span{font-size:.48rem;letter-spacing:.02em}
 }
 
 /* 375px — very small phones */
@@ -455,8 +455,8 @@ section{position:relative}
   .exp-num{font-size:1.3rem}
   /* tech: icons only, no labels */
   .tech-row{gap:.6rem;animation-duration:16s}
-  .tech-ico{min-width:36px;max-width:46px;padding:.4rem .2rem;border-radius:8px}
-  .tech-ico img{width:16px;height:16px}
+  .tech-ico{min-width:48px;max-width:58px;padding:.6rem .35rem;border-radius:10px}
+  .tech-ico img{width:24px;height:24px}
   .tech-ico span{display:none}
 }
 
