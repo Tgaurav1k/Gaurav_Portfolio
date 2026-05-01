@@ -280,9 +280,15 @@ section{position:relative}
 .exp-name{font:600 .6rem/1 'Geist',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(237,237,237,.7);margin:.35rem 0 .25rem}
 .exp-sub{font:400 .6rem/1.4 'Geist',sans-serif;color:rgba(237,237,237,.38)}
 
-/* Tech grid */
-.tech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem}
-.tech-ico{width:42px;height:42px;border-radius:9px;border:1px solid rgba(237,237,237,.1);background:rgba(237,237,237,.04);display:flex;align-items:center;justify-content:center;overflow:hidden;transition:border-color .3s,background .3s,transform .3s;cursor:default}
+/* Tech marquee */
+.tech-marquee{overflow:hidden;width:100%;position:relative}
+.tech-marquee::before,.tech-marquee::after{content:"";position:absolute;top:0;bottom:0;width:1.5rem;z-index:2;pointer-events:none}
+.tech-marquee::before{left:0;background:linear-gradient(90deg,rgba(10,10,10,.85),transparent)}
+.tech-marquee::after{right:0;background:linear-gradient(-90deg,rgba(10,10,10,.85),transparent)}
+.tech-track{display:flex;gap:.5rem;width:max-content;animation:techScroll 14s linear infinite}
+.tech-track:hover{animation-play-state:paused}
+@keyframes techScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tech-ico{width:42px;height:42px;flex-shrink:0;border-radius:9px;border:1px solid rgba(237,237,237,.1);background:rgba(237,237,237,.04);display:flex;align-items:center;justify-content:center;overflow:hidden;transition:border-color .3s,background .3s,transform .3s;cursor:default}
 .tech-ico:hover{border-color:rgba(237,237,237,.3);background:rgba(237,237,237,.08);transform:translateY(-2px)}
 .tech-ico img{width:24px;height:24px;object-fit:contain;display:block}
 
