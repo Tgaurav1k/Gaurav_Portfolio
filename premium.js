@@ -33,9 +33,16 @@ gsap.ticker.lagSmoothing(0);
 // ---------- Page wipe nav transition ----------
 const pageWipe = document.getElementById('pageWipe');
 let wiping = false;
+let wipeSafety = null;
+function resetWipe() {
+  wiping = false;
+  if (pageWipe) { pageWipe.style.transition = 'none'; pageWipe.style.clipPath = 'inset(0 100% 0 0)'; }
+}
 function wipeToSection(target) {
   if (wiping) return;
   wiping = true;
+  clearTimeout(wipeSafety);
+  wipeSafety = setTimeout(resetWipe, 1200); // safety: always unlock after 1.2s
   pageWipe.style.transition = 'clip-path .42s cubic-bezier(.85,0,.15,1)';
   pageWipe.style.clipPath = 'inset(0 0% 0 0)';
   setTimeout(() => {
@@ -43,9 +50,8 @@ function wipeToSection(target) {
     pageWipe.style.transition = 'clip-path .42s cubic-bezier(.85,0,.15,1)';
     pageWipe.style.clipPath = 'inset(0 0 0 100%)';
     setTimeout(() => {
-      pageWipe.style.transition = 'none';
-      pageWipe.style.clipPath = 'inset(0 100% 0 0)';
-      wiping = false;
+      clearTimeout(wipeSafety);
+      resetWipe();
     }, 450);
   }, 440);
 }

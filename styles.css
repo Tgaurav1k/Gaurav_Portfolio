@@ -14,7 +14,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .bg-orb.a{background:radial-gradient(circle,#6366f1,transparent 70%);top:-15vw;left:-15vw}
 .bg-orb.b{background:radial-gradient(circle,#a855f7,transparent 70%);bottom:-20vw;right:-15vw}
 main{position:relative;z-index:2}
-.nav{z-index:100}
+.nav{z-index:500}
 .pre-loader{z-index:10000}
 .cursor-dot{z-index:9999}
 
@@ -31,7 +31,7 @@ main{position:relative;z-index:2}
 .pre-loader.done{transform:translateY(-100%)}
 .pre-loader .pl-mark{font:400 5rem/1 'Instrument Serif',serif;font-style:italic;overflow:hidden;position:relative;z-index:2}
 .pre-loader .pl-mark span{display:inline-block}
-.pre-loader .pl-count{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font:400 clamp(7rem,20vw,16rem)/1 'Instrument Serif',serif;font-style:italic;letter-spacing:-.04em;color:#ededed;font-variant-numeric:tabular-nums;pointer-events:none;animation:countPop .12s cubic-bezier(.7,0,.3,1)}
+.pre-loader .pl-count{position:absolute;bottom:2.5rem;right:2.5rem;font:400 clamp(3.5rem,9vw,7rem)/1 'Instrument Serif',serif;font-style:italic;letter-spacing:-.04em;color:#ededed;font-variant-numeric:tabular-nums;pointer-events:none;animation:countPop .12s cubic-bezier(.7,0,.3,1)}
 @keyframes countPop{0%{transform:translate(-50%,-50%) scale(.96);opacity:.7}100%{transform:translate(-50%,-50%) scale(1);opacity:1}}
 .pre-loader .pl-bar{position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(237,237,237,.08);overflow:hidden}
 .pre-loader .pl-fill{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,#6366f1,#ededed);transition:width .15s linear}
@@ -284,17 +284,19 @@ section{position:relative}
 .exp-name{font:600 .6rem/1 'Geist',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(237,237,237,.7);margin:.35rem 0 .25rem}
 .exp-sub{font:400 .6rem/1.4 'Geist',sans-serif;color:rgba(237,237,237,.38)}
 
-/* Tech marquee */
-.tech-marquee{overflow:hidden;width:100%;position:relative}
-.tech-marquee::before,.tech-marquee::after{content:"";position:absolute;top:0;bottom:0;width:1.5rem;z-index:2;pointer-events:none}
-.tech-marquee::before{left:0;background:linear-gradient(90deg,rgba(10,10,10,.85),transparent)}
-.tech-marquee::after{right:0;background:linear-gradient(-90deg,rgba(10,10,10,.85),transparent)}
-.tech-track{display:flex;gap:.5rem;width:max-content;animation:techScroll 14s linear infinite}
-.tech-track:hover{animation-play-state:paused}
-@keyframes techScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.tech-ico{width:42px;height:42px;flex-shrink:0;border-radius:9px;border:1px solid rgba(237,237,237,.1);background:rgba(237,237,237,.04);display:flex;align-items:center;justify-content:center;overflow:hidden;transition:border-color .3s,background .3s,transform .3s;cursor:default}
-.tech-ico:hover{border-color:rgba(237,237,237,.3);background:rgba(237,237,237,.08);transform:translateY(-2px)}
-.tech-ico img{width:24px;height:24px;object-fit:contain;display:block}
+/* Tech marquee wrapper */
+.tech-marquee{overflow:hidden;width:100%}
+/* Tech row — scrolling track */
+.tech-row{display:flex;align-items:center;width:max-content;gap:2rem;animation:techScroll 28s linear infinite;will-change:transform}
+.tech-row:hover{animation-play-state:paused}
+@keyframes techScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.tech-ico{display:flex;flex-direction:column;align-items:center;gap:.45rem;padding:.7rem .5rem;border-radius:12px;border:1px solid rgba(237,237,237,.08);background:rgba(237,237,237,.03);transition:border-color .3s,background .3s,transform .3s;cursor:default;min-width:64px;flex:1;max-width:80px}
+.tech-ico:hover{border-color:rgba(237,237,237,.25);background:rgba(237,237,237,.07);transform:translateY(-3px)}
+.tech-ico img{width:28px;height:28px;object-fit:contain;display:block}
+.tech-ico span{font:500 .58rem/1 'Geist',sans-serif;letter-spacing:.06em;color:rgba(237,237,237,.4);text-align:center;transition:color .3s}
+.tech-ico:hover span{color:rgba(237,237,237,.8)}
+@media(max-width:768px){.tech-ico{min-width:48px;max-width:60px;padding:.6rem .3rem}.tech-ico img{width:22px;height:22px}.tech-ico span{font-size:.5rem}}
+@media(max-width:480px){.tech-row{gap:.4rem 0}.tech-ico{min-width:40px;max-width:52px}}
 
 /* Mobile */
 @media(max-width:900px){
