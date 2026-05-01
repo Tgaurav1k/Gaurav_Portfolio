@@ -295,8 +295,24 @@ section{position:relative}
 .tech-ico img{width:28px;height:28px;object-fit:contain;display:block}
 .tech-ico span{font:500 .58rem/1 'Geist',sans-serif;letter-spacing:.06em;color:rgba(237,237,237,.4);text-align:center;transition:color .3s}
 .tech-ico:hover span{color:rgba(237,237,237,.8)}
-@media(max-width:768px){.tech-ico{min-width:48px;max-width:60px;padding:.6rem .3rem}.tech-ico img{width:22px;height:22px}.tech-ico span{font-size:.5rem}}
-@media(max-width:480px){.tech-row{gap:.4rem 0}.tech-ico{min-width:40px;max-width:52px}}
+@media(max-width:768px){
+  .tech-row{gap:1.2rem;animation-duration:22s}
+  .tech-ico{min-width:52px;max-width:64px;padding:.6rem .4rem}
+  .tech-ico img{width:22px;height:22px}
+  .tech-ico span{font-size:.5rem}
+}
+@media(max-width:480px){
+  .tech-row{gap:.8rem;animation-duration:18s}
+  .tech-ico{min-width:44px;max-width:54px;padding:.5rem .3rem}
+  .tech-ico img{width:18px;height:18px}
+  .tech-ico span{font-size:.48rem;letter-spacing:.02em}
+}
+@media(max-width:375px){
+  .tech-row{gap:.6rem;animation-duration:16s}
+  .tech-ico{min-width:38px;max-width:46px;padding:.45rem .2rem;border-radius:8px}
+  .tech-ico img{width:16px;height:16px}
+  .tech-ico span{display:none}
+}
 
 /* Mobile */
 @media(max-width:900px){
@@ -386,5 +402,61 @@ section{position:relative}
   .work-desc{font-size:.88rem}
   .about-stat .num{font-size:2.4rem}
   .nav-overlay a{font-size:2.6rem}
+}
+
+/* ===== HERO CARDS + TECH STRIP — full mobile responsive ===== */
+
+/* 900px — tablet: hcard stacking already set, just refine padding */
+@media(max-width:900px){
+  .hcard{padding:1.2rem 1.5rem}
+  .hcard-label{margin-bottom:.7rem}
+  .exp-stats{gap:.75rem}
+}
+
+/* 768px — large phones */
+@media(max-width:768px){
+  .hcard{padding:1.1rem 1.2rem}
+  /* skill bars */
+  .sbar-name{width:4.5rem;font-size:.63rem}
+  .sbar-pct{width:2rem;font-size:.58rem}
+  /* experience stats */
+  .exp-num{font-size:1.7rem}
+  .exp-name{font-size:.56rem}
+  .exp-sub{font-size:.54rem}
+  /* tech marquee */
+  .tech-row{gap:1.2rem;animation-duration:22s}
+  .tech-ico{min-width:52px;max-width:64px;padding:.6rem .4rem}
+  .tech-ico img{width:22px;height:22px}
+  .tech-ico span{font-size:.5rem}
+}
+
+/* 480px — small phones */
+@media(max-width:480px){
+  .hcard{padding:1rem 1rem}
+  .sbar-name{width:3.8rem;font-size:.6rem}
+  .sbar-track{height:2px}
+  .sbar-pct{font-size:.56rem;width:1.8rem}
+  .exp-stats{gap:.5rem}
+  .exp-num{font-size:1.5rem}
+  .exp-name{font-size:.54rem}
+  .exp-sub{font-size:.5rem}
+  /* tech */
+  .tech-row{gap:.8rem;animation-duration:18s}
+  .tech-ico{min-width:44px;max-width:54px;padding:.5rem .3rem}
+  .tech-ico img{width:18px;height:18px}
+  .tech-ico span{font-size:.46rem;letter-spacing:.02em}
+}
+
+/* 375px — very small phones */
+@media(max-width:375px){
+  .hcard{padding:.9rem .9rem}
+  .sbar-name{width:3.4rem;font-size:.58rem}
+  .exp-stats{grid-template-columns:repeat(3,1fr);gap:.3rem}
+  .exp-num{font-size:1.3rem}
+  /* tech: icons only, no labels */
+  .tech-row{gap:.6rem;animation-duration:16s}
+  .tech-ico{min-width:36px;max-width:46px;padding:.4rem .2rem;border-radius:8px}
+  .tech-ico img{width:16px;height:16px}
+  .tech-ico span{display:none}
 }
 
