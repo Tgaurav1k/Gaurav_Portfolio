@@ -218,8 +218,8 @@ let curVel = 0;
 ScrollTrigger.create({
   start: 'top top', end: 'bottom bottom',
   onUpdate: self => {
-    const v = Math.min(Math.abs(self.getVelocity()) / 800, 4);
-    curVel += (v - curVel) * 0.1;
+    const v = Math.min(Math.abs(self.getVelocity()) / 2000, 1.5);
+    curVel += (v - curVel) * 0.08;
     if (marqueeTrack) marqueeTrack.style.animationDuration = (45 / Math.max(1, curVel)) + 's';
   }
 });
