@@ -1,4 +1,6 @@
 // Premium portfolio — GSAP + Lenis + 3D + magnetic + char reveal
+if (history.scrollRestoration) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
 gsap.registerPlugin(ScrollTrigger);
 
 // ---------- Loader ----------
