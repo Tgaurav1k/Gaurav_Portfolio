@@ -10,7 +10,12 @@ gsap.registerPlugin(ScrollTrigger);
   const tick = setInterval(() => {
     n += Math.ceil(Math.random() * 7) + 2;
     if (n >= 100) { n = 100; clearInterval(tick); }
-    if (el) el.textContent = String(n).padStart(3, '0');
+    if (el) {
+      el.textContent = String(n).padStart(3, '0');
+      el.style.animation = 'none';
+      el.offsetHeight; // reflow to restart animation
+      el.style.animation = '';
+    }
     if (fill) fill.style.width = n + '%';
     if (n === 100) setTimeout(() => {
       loader && loader.classList.add('done');
