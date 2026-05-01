@@ -20,6 +20,8 @@ gsap.registerPlugin(ScrollTrigger);
     }
     if (fill) fill.style.width = n + '%';
     if (n === 100) setTimeout(() => {
+      window.scrollTo(0, 0);
+      lenis.scrollTo(0, { immediate: true });
       loader && loader.classList.add('done');
       runHeroIntro();
     }, 350);
@@ -28,6 +30,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 // ---------- Lenis smooth scroll ----------
 const lenis = new Lenis({ duration: 1.25, easing: t => 1 - Math.pow(1 - t, 4), smoothWheel: true, lerp: 0.09 });
+lenis.scrollTo(0, { immediate: true });
 lenis.on('scroll', ScrollTrigger.update);
 gsap.ticker.add(t => lenis.raf(t * 1000));
 gsap.ticker.lagSmoothing(0);
