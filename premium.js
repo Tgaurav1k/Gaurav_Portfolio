@@ -30,37 +30,13 @@ lenis.on('scroll', ScrollTrigger.update);
 gsap.ticker.add(t => lenis.raf(t * 1000));
 gsap.ticker.lagSmoothing(0);
 
-// ---------- Page wipe nav transition ----------
-const pageWipe = document.getElementById('pageWipe');
-let wiping = false;
-let wipeSafety = null;
-function resetWipe() {
-  wiping = false;
-  if (pageWipe) { pageWipe.style.transition = 'none'; pageWipe.style.clipPath = 'inset(0 100% 0 0)'; }
-}
-function wipeToSection(target) {
-  if (wiping) return;
-  wiping = true;
-  clearTimeout(wipeSafety);
-  wipeSafety = setTimeout(resetWipe, 1200); // safety: always unlock after 1.2s
-  pageWipe.style.transition = 'clip-path .42s cubic-bezier(.85,0,.15,1)';
-  pageWipe.style.clipPath = 'inset(0 0% 0 0)';
-  setTimeout(() => {
-    lenis.scrollTo(target, { offset: -80, immediate: true });
-    pageWipe.style.transition = 'clip-path .42s cubic-bezier(.85,0,.15,1)';
-    pageWipe.style.clipPath = 'inset(0 0 0 100%)';
-    setTimeout(() => {
-      clearTimeout(wipeSafety);
-      resetWipe();
-    }, 450);
-  }, 440);
-}
+// ---------- Nav smooth scroll ----------
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const href = a.getAttribute('href');
     if (!href || href.length < 2) return;
     const t = document.querySelector(href);
-    if (t) { e.preventDefault(); wipeToSection(t); }
+    if (t) { e.preventDefault(); lenis.scrollTo(t, { offset: -80, duration: 1.2, easing: t => 1 - Math.pow(1 - t, 4) }); }
   });
 });
 
