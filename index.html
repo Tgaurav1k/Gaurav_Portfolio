@@ -29,7 +29,7 @@
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
-<link rel="preload" as="image" href="img/profilepic.png" fetchpriority="high">
+<link rel="preload" as="image" href="img/profilepic.webp" type="image/webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
@@ -317,7 +317,10 @@
 
 <!-- Right: personal image -->
 <div class="hero-img-col">
+<picture>
+<source srcset="img/profilepic.webp" type="image/webp">
 <img src="img/profilepic.png" alt="Gaurav Kumar — Full-stack developer (React, Node, Next.js)" class="hero-portrait" width="540" height="720" fetchpriority="high" decoding="async">
+</picture>
 <div class="hero-img-grad"></div>
 <div class="hero-badge" aria-hidden="true">
 <svg class="badge-ring" viewBox="0 0 200 200">

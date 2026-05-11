@@ -1,0 +1,12 @@
+{
+  "name": "gaurav-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static portfolio site. node_modules is dev-only (image optimisation script). Vercel serves the HTML/CSS/JS directly.",
+  "scripts": {
+    "optimize-images": "node scripts/optimize-images.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.2"
+  }
+}
