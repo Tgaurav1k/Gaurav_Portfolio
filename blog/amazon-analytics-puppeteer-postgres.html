@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Amazon Ads analytics dashboard with Puppeteer Stealth + PostgreSQL — Gaurav Kumar</title>
+<meta name="description" content="How I built an Amazon Ads analytics dashboard with Puppeteer Stealth + PostgreSQL and cut weekly reporting from 4 hours to 5 minutes. Real architecture, the part that broke, and the schema trick that made rank-history queries trivial.">
+<meta name="author" content="Gaurav Kumar">
+<meta name="keywords" content="Amazon Ads analytics, Puppeteer Stealth, ACOS dashboard, ROAS tracking, Amazon Seller Central scraper, PostgreSQL rank history, Node.js web scraping, Amazon keyword tracker">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" href="https://gaurav-portfolio-g1ks.vercel.app/blog/amazon-analytics-puppeteer-postgres.html">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Gaurav Kumar — Portfolio">
+<meta property="og:title" content="How I built an Amazon Ads analytics dashboard with Puppeteer Stealth + PostgreSQL">
+<meta property="og:description" content="Cut weekly reporting from 4 hours to 5 minutes. The architecture, the part that broke, and the schema trick that made rank-history queries trivial.">
+<meta property="og:url" content="https://gaurav-portfolio-g1ks.vercel.app/blog/amazon-analytics-puppeteer-postgres.html">
+<meta property="og:image" content="https://gaurav-portfolio-g1ks.vercel.app/img/amazon-1.png">
+<meta property="article:published_time" content="2026-05-11T00:00:00+05:30">
+<meta property="article:modified_time" content="2026-05-11T00:00:00+05:30">
+<meta property="article:author" content="Gaurav Kumar">
+<meta property="article:tag" content="Puppeteer">
+<meta property="article:tag" content="PostgreSQL">
+<meta property="article:tag" content="Amazon Ads">
+<meta property="article:tag" content="Node.js">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Amazon Ads analytics dashboard with Puppeteer Stealth + PostgreSQL">
+<meta name="twitter:description" content="Cut weekly reporting from 4 hours to 5 minutes. Real architecture + schema trick.">
+<meta name="twitter:image" content="https://gaurav-portfolio-g1ks.vercel.app/img/amazon-1.png">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How I built an Amazon Ads analytics dashboard with Puppeteer Stealth + PostgreSQL — and cut weekly reporting from 4 hours to 5 minutes",
+  "description": "How I built an Amazon Ads analytics dashboard with Puppeteer Stealth + PostgreSQL. Cut weekly reporting from 4 hours to 5 minutes. Architecture, schema, and the rank-history trick.",
+  "datePublished": "2026-05-11T00:00:00+05:30",
+  "dateModified": "2026-05-11T00:00:00+05:30",
+  "author": {
+    "@type": "Person",
+    "name": "Gaurav Kumar",
+    "url": "https://gaurav-portfolio-g1ks.vercel.app/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Gaurav Kumar",
+    "url": "https://gaurav-portfolio-g1ks.vercel.app/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://gaurav-portfolio-g1ks.vercel.app/blog/amazon-analytics-puppeteer-postgres.html"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://gaurav-portfolio-g1ks.vercel.app/img/amazon-1.png"
+  },
+  "keywords": "Puppeteer Stealth, PostgreSQL, Amazon Ads, Node.js, web scraping, ACOS, ROAS, rank history",
+  "wordCount": 1050,
+  "inLanguage": "en"
+}
+</script>
+</head>
+<body class="blog-body">
+
+<header class="blog-header">
+  <a href="/" class="blog-back">← Gaurav<sup>©</sup></a>
+  <nav class="blog-nav">
+    <a href="/#work">Work</a>
+    <a href="/#about">About</a>
+    <a href="/blog/" aria-current="page">Blog</a>
+    <a href="/#contact">Contact</a>
+  </nav>
+</header>
+
+<main class="blog-main blog-article">
+  <article>
+
+    <div class="blog-article-meta">
+      <a href="/blog/">Blog</a>
+      <span>·</span>
+      <time datetime="2026-05-11">May 11, 2026</time>
+      <span>·</span>
+      <span>6 min read</span>
+    </div>
+
+    <h1 class="blog-article-title">How I built an Amazon Ads analytics dashboard with Puppeteer Stealth + PostgreSQL — and cut weekly reporting from <em class="serif">4 hours to 5 minutes</em></h1>
+
+    <p class="blog-article-lede">A team I worked with sold on Amazon India. Every Monday, the same painful ritual: someone logs into Seller Central, downloads ad reports for ~18 ASINs, opens each one in Excel, runs VLOOKUPs against last week's data, and spends 3–4 hours producing a single ACOS/ROAS report. By Friday, the report was already stale.</p>
+
+    <p>I replaced that whole pipeline with a Node.js + PostgreSQL + Puppeteer Stealth dashboard. Weekly reporting now takes about 5 minutes — and the 5 minutes is just <em>looking</em> at the dashboard, not generating it.</p>
+
+    <p>Here's how it works, and the parts that turned out harder than expected.</p>
+
+    <h2>The problem with "just use the Amazon Ads API"</h2>
+
+    <p>Spoiler: the Amazon Advertising API would have been the textbook answer. It wasn't an option for two reasons:</p>
+
+    <ol>
+      <li><strong>Keyword-level rank data isn't exposed cleanly through the official API</strong> — you can get spend, impressions, CTR, ACOS, but week-over-week organic vs sponsored rank tracking for specific keywords requires the Seller Central UI views.</li>
+      <li><strong>Onboarding the API for a third-party agency-managed account is a multi-week approval process</strong> that wasn't going to happen.</li>
+    </ol>
+
+    <p>So: browser automation it was.</p>
+
+    <h2>Architecture, 10,000-foot view</h2>
+
+    <pre class="blog-ascii"><code>┌──────────────────┐    cron (Mon 06:00 IST)    ┌──────────────────┐
+│ Puppeteer Stealth│───────────────────────────▶│ Seller Central UI│
+│  worker (Node)   │◀────── raw HTML/JSON ──────│                  │
+└────────┬─────────┘                            └──────────────────┘
+         │ parsed rows
+         ▼
+┌──────────────────┐                            ┌──────────────────┐
+│   PostgreSQL     │◀───────── reads ───────────│  Next.js dashbd  │
+│  (rank history,  │                            │ (ACOS/ROAS/CPR,  │
+│   ad spend, CPR) │                            │  W-o-W charts)   │
+└──────────────────┘                            └──────────────────┘</code></pre>
+
+    <p>Three moving parts: a scraper worker, a PostgreSQL store, and a Next.js dashboard. The whole stack runs on a single small VPS.</p>
+
+    <h2>Puppeteer Stealth: the part that actually broke</h2>
+
+    <p>The first version of the scraper used vanilla Puppeteer. It worked for exactly two runs before Seller Central started serving a captcha and then locking the account out for ~6 hours.</p>
+
+    <p>Two things made it work reliably:</p>
+
+    <p><strong>1. <code>puppeteer-extra-plugin-stealth</code></strong> patches the obvious bot-detection signals — the <code>navigator.webdriver</code> flag, missing plugins arrays, the WebGL vendor string, that sort of thing. It's not magic but it gets you past the basic checks.</p>
+
+    <pre><code class="lang-js">import puppeteer from 'puppeteer-extra'
+import StealthPlugin from 'puppeteer-extra-plugin-stealth'
+
+puppeteer.use(StealthPlugin())
+
+const browser = await puppeteer.launch({
+  headless: 'new',
+  args: [
+    '--no-sandbox',
+    '--disable-blink-features=AutomationControlled',
+  ],
+})</code></pre>
+
+    <p><strong>2. Session reuse.</strong> The expensive part isn't scraping — it's logging in. Amazon's login flow has 2FA, device-trust prompts, the works. Instead of logging in every Monday, the worker saves the post-login cookies + localStorage to disk after the first manual run, and reuses them. The session typically stays alive for 2–3 weeks before needing a refresh.</p>
+
+    <pre><code class="lang-js">// Save once after manual auth
+const cookies = await page.cookies()
+await fs.writeFile('session.json', JSON.stringify(cookies))
+
+// Restore every run
+const saved = JSON.parse(await fs.readFile('session.json'))
+await page.setCookie(...saved)</code></pre>
+
+    <p>Combined: zero manual login on the weekly run, no captcha walls.</p>
+
+    <h2>PostgreSQL schema — the rank-history trick</h2>
+
+    <p>The non-obvious schema design is the rank history. You want to answer questions like <em>"how did keyword X rank for ASIN Y, sponsored vs organic, on the same Monday in each of the last 12 weeks?"</em></p>
+
+    <p>Storing one row per (asin, keyword, week, position_type) makes this trivially queryable:</p>
+
+    <pre><code class="lang-sql">CREATE TABLE rank_history (
+  id          BIGSERIAL PRIMARY KEY,
+  asin        TEXT NOT NULL,
+  keyword     TEXT NOT NULL,
+  week_start  DATE NOT NULL,
+  position_type TEXT NOT NULL CHECK (position_type IN ('organic','sponsored')),
+  rank        INT,
+  fetched_at  TIMESTAMPTZ DEFAULT now(),
+  UNIQUE (asin, keyword, week_start, position_type)
+);
+
+CREATE INDEX idx_rank_lookup ON rank_history (asin, keyword, week_start DESC);</code></pre>
+
+    <p>Across 18 ASINs and ~3,500 tracked keywords, this table grows by roughly 7,000 rows per week — trivial for Postgres. The <code>UNIQUE</code> constraint means the scraper can be re-run safely if it crashes halfway through (<code>ON CONFLICT DO UPDATE</code>).</p>
+
+    <h2>The dashboard — what actually got used</h2>
+
+    <p>I built seven pages, but two of them get 80% of the daily traffic:</p>
+
+    <ol>
+      <li><strong>Comparison view</strong> — same keyword, same ASIN, organic rank vs sponsored rank, side by side, current week vs last week. This is the "what changed?" view people open first thing Monday.</li>
+      <li><strong>ASIN Engine</strong> — for a given ASIN, the top 50 keywords by traffic, with week-over-week movement arrows. This is what informs the next week's bid changes.</li>
+    </ol>
+
+    <p>The other five pages (ad spend, ROAS, CPR scores, session/page-view trends, the keyword-to-ASIN reverse lookup) are used weekly but not daily.</p>
+
+    <details class="blog-details">
+      <summary>What "CPR" means here, and why it gets its own page</summary>
+      <p>CPR (Cost Per Rank) in this context = total ad spend on a keyword ÷ the number of rank positions gained that week. It's not an Amazon metric — we derived it from the rank history and spend tables. Surprisingly useful for catching keywords where you're burning ad budget for zero ranking movement, which is usually a sign that the listing itself needs work, not the bid.</p>
+    </details>
+
+    <h2>Numbers that actually moved</h2>
+
+    <ul>
+      <li><strong>Weekly reporting:</strong> 3–4 hours → under 5 minutes</li>
+      <li><strong>Manual logins:</strong> every Monday → zero</li>
+      <li><strong>Keyword rows tracked:</strong> 0 (Excel only had the last 4 weeks) → 3,500+ keywords × 52+ weeks of history</li>
+      <li><strong>Surfaced bid decisions:</strong> pure gut feeling → backed by 12 weeks of organic vs sponsored rank data</li>
+    </ul>
+
+    <h2>What I'd do differently</h2>
+
+    <ul>
+      <li><strong>Headless Chromium in Docker, not on a host VPS.</strong> The container died once when an Ubuntu security update reset Chrome's binary path. Should have pinned a <code>mcr.microsoft.com/playwright</code> base image from day one.</li>
+      <li><strong>Materialised views for the weekly aggregations.</strong> I left the dashboard queries as raw joins. Once the rank_history table crossed ~200k rows, the comparison page started loading in 800ms instead of 80ms. A weekly <code>REFRESH MATERIALIZED VIEW</code> would fix it; haven't done it yet.</li>
+      <li><strong>Email/Slack alerts on rank drops.</strong> Right now you have to <em>open</em> the dashboard to know a key keyword dropped 20 positions. A weekly Slack digest would be 2 hours of work and a clear win.</li>
+    </ul>
+
+    <h2>Stack, in one block</h2>
+
+    <ul>
+      <li><strong>Scraper:</strong> Node.js + Puppeteer Stealth + cron</li>
+      <li><strong>Storage:</strong> PostgreSQL 15 (one table for raw scrapes, one for derived metrics)</li>
+      <li><strong>Dashboard:</strong> Next.js + React, queries over a thin Node API</li>
+      <li><strong>Hosting:</strong> Single 2GB Hetzner VPS, ~₹400/month</li>
+    </ul>
+
+    <p>Nothing exotic. The leverage came from the schema + the scheduler, not the stack.</p>
+
+    <hr class="blog-rule">
+
+    <div class="blog-bio">
+      <p>I'm <strong>Gaurav Kumar</strong> — full-stack developer building React + Node products for finance and e-commerce teams in India. More projects + a long writeup on the four finance dashboards I shipped at <a href="/blog/finance-dashboards-playbook.html">the next post</a> or back at the <a href="/">portfolio home</a>.</p>
+      <p class="blog-bio-links">
+        <a href="mailto:Gauravthakur1k@gmail.com">Email</a> ·
+        <a href="https://www.linkedin.com/in/gaurav-kumar-6bb732230/" target="_blank" rel="noopener">LinkedIn</a> ·
+        <a href="https://github.com/tgaurav1k" target="_blank" rel="noopener">GitHub</a>
+      </p>
+    </div>
+
+  </article>
+
+  <aside class="blog-next">
+    <span class="blog-next-eyebrow">Next read</span>
+    <a class="blog-next-card" href="/blog/finance-dashboards-playbook.html">
+      <h3>I built 4 finance dashboards in 18 months — the React + Node playbook that worked every time</h3>
+      <span>Continue →</span>
+    </a>
+  </aside>
+</main>
+
+<footer class="blog-footer">
+  <span>© 2026 Gaurav Kumar</span>
+  <a href="/">← Back to portfolio</a>
+</footer>
+
+</body>
+</html>

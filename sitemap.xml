@@ -27,4 +27,30 @@
       <image:title>Finance Dashboard</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://gaurav-portfolio-g1ks.vercel.app/blog/</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gaurav-portfolio-g1ks.vercel.app/blog/amazon-analytics-puppeteer-postgres.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://gaurav-portfolio-g1ks.vercel.app/img/amazon-1.png</image:loc>
+      <image:title>Amazon Ads analytics dashboard with Puppeteer Stealth + PostgreSQL</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://gaurav-portfolio-g1ks.vercel.app/blog/finance-dashboards-playbook.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://gaurav-portfolio-g1ks.vercel.app/img/dashbaord_prl.png</image:loc>
+      <image:title>4 finance dashboards in 18 months — React + Node playbook</image:title>
+    </image:image>
+  </url>
 </urlset>
