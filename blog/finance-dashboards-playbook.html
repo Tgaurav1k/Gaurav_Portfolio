@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>4 finance dashboards in 18 months — the React + Node playbook that worked every time</title>
+<title>4 finance dashboards in 9 months — the React + Node playbook that worked every time</title>
 <meta name="description" content="The 5 patterns I reuse on every finance dashboard: denormalised reporting views, the freshness badge, server-side aggregation with browser filtering, CSV export, and the audit log that won the team's trust.">
 <meta name="author" content="Gaurav Kumar">
 <meta name="keywords" content="finance dashboard, React finance, Node.js dashboard, PostgreSQL materialized view, AR aging dashboard, P&L dashboard, reconciliation dashboard, full-stack finance">
@@ -14,7 +14,7 @@
 
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Gaurav Kumar — Portfolio">
-<meta property="og:title" content="I built 4 finance dashboards in 18 months — the React + Node playbook">
+<meta property="og:title" content="I built 4 finance dashboards in 9 months — the React + Node playbook">
 <meta property="og:description" content="The 5 patterns I reuse on every finance dashboard. The denormalised view, the freshness badge, the CSV export non-negotiable, the audit log that won the team's trust.">
 <meta property="og:url" content="https://gaurav-portfolio-g1ks.vercel.app/blog/finance-dashboards-playbook.html">
 <meta property="og:image" content="https://gaurav-portfolio-g1ks.vercel.app/img/dashbaord_prl.png">
@@ -27,7 +27,7 @@
 <meta property="article:tag" content="Finance">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="4 finance dashboards in 18 months — the React + Node playbook">
+<meta name="twitter:title" content="4 finance dashboards in 9 months — the React + Node playbook">
 <meta name="twitter:description" content="The 5 patterns I reuse on every finance dashboard.">
 <meta name="twitter:image" content="https://gaurav-portfolio-g1ks.vercel.app/img/dashbaord_prl.png">
 
@@ -41,7 +41,7 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "I built 4 finance dashboards in 18 months — here's the React + Node playbook that worked every time",
+  "headline": "I built 4 finance dashboards in 9 months — here's the React + Node playbook that worked every time",
   "description": "Five patterns I reuse on every finance dashboard: denormalised reporting view, freshness badge, server-side aggregation, CSV export, audit log.",
   "datePublished": "2026-05-11T00:00:00+05:30",
   "dateModified": "2026-05-11T00:00:00+05:30",
@@ -107,11 +107,16 @@
       <span>7 min read</span>
     </div>
 
-    <h1 class="blog-article-title">I built 4 finance dashboards in 18 months — here's the React + Node <em class="serif">playbook</em> that worked every time</h1>
+    <h1 class="blog-article-title">I built 4 finance dashboards in 9 months — here's the React + Node <em class="serif">playbook</em> that worked every time</h1>
+
+    <figure class="blog-article-hero">
+      <img src="/img/dashbaord_prl.png" alt="Finance dashboard built with React + Node showing P&L, AR aging and reconciliation views">
+      <figcaption>One of the four — a P&amp;L by entity dashboard with the same denormalised reporting view + freshness badge pattern used across all of them.</figcaption>
+    </figure>
 
     <p class="blog-article-lede">A CFO once told me: <em>"Our spreadsheets are correct. They're just always two weeks late."</em> That sentence is the entire reason finance dashboards exist. Not because Excel is wrong — because the <em>moment</em> the right number arrives matters as much as the number itself.</p>
 
-    <p>Over the last 18 months I've shipped four production finance dashboards for the same operations team — different domains (reconciliation, AR aging, P&amp;L by entity, expense automation) but the <strong>same underlying problems</strong> every time. This is the playbook I now reuse on every new one.</p>
+    <p>Over the last 9 months I've shipped four production finance dashboards for the same operations team — different domains (reconciliation, AR aging, P&amp;L by entity, expense automation) but the <strong>same underlying problems</strong> every time. This is the playbook I now reuse on every new one.</p>
 
     <blockquote class="blog-callout">
       <p><strong>Quick question before you read on</strong> — which one of these do you spend the most time on?</p>

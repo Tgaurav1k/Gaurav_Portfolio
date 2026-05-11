@@ -484,10 +484,14 @@ section{position:relative}
 .blog-intro h1 .serif{font-family:'Instrument Serif',serif;font-style:italic;color:rgba(237,237,237,.7);font-weight:400}
 .blog-lede{font-size:1.1rem;color:rgba(237,237,237,.7);max-width:62ch;margin-bottom:5rem}
 
-.blog-list{display:flex;flex-direction:column;gap:2rem;margin-bottom:5rem}
-.blog-card{display:block;padding:2.4rem 2rem;border:1px solid rgba(237,237,237,.08);border-radius:18px;background:rgba(237,237,237,.02);transition:border-color .35s,background .35s,transform .35s cubic-bezier(.7,0,.3,1)}
-.blog-card:hover{border-color:rgba(237,237,237,.22);background:rgba(237,237,237,.04);transform:translateY(-2px)}
-.blog-card-meta{display:flex;gap:1rem;font:500 .72rem/1 'Geist',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,237,237,.55);margin-bottom:1.2rem}
+.blog-list{display:flex;flex-direction:column;gap:2.4rem;margin-bottom:5rem}
+.blog-card{display:block;padding:0;border:1px solid rgba(237,237,237,.08);border-radius:18px;background:rgba(237,237,237,.02);overflow:hidden;transition:border-color .35s,background .35s,transform .35s cubic-bezier(.7,0,.3,1)}
+.blog-card:hover{border-color:rgba(237,237,237,.22);background:rgba(237,237,237,.04);transform:translateY(-3px)}
+.blog-card-media{position:relative;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,#101012,#0a0a0a);border-bottom:1px solid rgba(237,237,237,.06);margin:0}
+.blog-card-media img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .7s cubic-bezier(.7,0,.3,1)}
+.blog-card:hover .blog-card-media img{transform:scale(1.04)}
+.blog-card-content{padding:2.2rem 2rem 2.4rem}
+.blog-card-meta{display:flex;gap:1rem;flex-wrap:wrap;font:500 .72rem/1 'Geist',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,237,237,.55);margin-bottom:1.2rem}
 .blog-card-title{font:400 clamp(1.4rem,2.6vw,1.9rem)/1.2 'Geist',sans-serif;letter-spacing:-.02em;margin-bottom:1rem;color:#ededed}
 .blog-card-excerpt{font-size:.98rem;color:rgba(237,237,237,.65);margin-bottom:1.4rem;max-width:64ch}
 .blog-card-cta{font:500 .82rem/1 'Geist',sans-serif;color:rgba(237,237,237,.9);letter-spacing:.02em}
@@ -501,6 +505,10 @@ section{position:relative}
 .blog-article-meta a:hover{color:#ededed}
 .blog-article-title{font:300 clamp(2rem,4.5vw,3.3rem)/1.08 'Geist',sans-serif;letter-spacing:-.025em;margin-bottom:2rem}
 .blog-article-title .serif{font-family:'Instrument Serif',serif;font-style:italic;color:rgba(237,237,237,.85);font-weight:400}
+
+.blog-article-hero{margin:1rem 0 2.6rem;border-radius:14px;overflow:hidden;border:1px solid rgba(237,237,237,.08);background:#0a0a0a}
+.blog-article-hero img{width:100%;height:auto;display:block;object-fit:cover}
+.blog-article-hero figcaption{padding:1rem 1.3rem;font:400 .85rem/1.55 'Geist',sans-serif;color:rgba(237,237,237,.55);background:rgba(237,237,237,.025);border-top:1px solid rgba(237,237,237,.06)}
 
 .blog-article-lede{font-size:1.18rem;color:rgba(237,237,237,.78);margin-bottom:2rem;line-height:1.55}
 

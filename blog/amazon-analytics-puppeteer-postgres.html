@@ -109,6 +109,11 @@
 
     <h1 class="blog-article-title">How I built an Amazon Ads analytics dashboard with Puppeteer Stealth + PostgreSQL — and cut weekly reporting from <em class="serif">4 hours to 5 minutes</em></h1>
 
+    <figure class="blog-article-hero">
+      <img src="/img/amazon-1.png" alt="Amazon India Analytics Dashboard — Ad Reports view with ACOS, ROAS and weekly rank tracking">
+      <figcaption>One of the seven pages — the Ad Reports view. Built with Next.js, reads from a Postgres mirror refreshed every Monday by a Puppeteer Stealth worker.</figcaption>
+    </figure>
+
     <p class="blog-article-lede">A team I worked with sold on Amazon India. Every Monday, the same painful ritual: someone logs into Seller Central, downloads ad reports for ~18 ASINs, opens each one in Excel, runs VLOOKUPs against last week's data, and spends 3–4 hours producing a single ACOS/ROAS report. By Friday, the report was already stale.</p>
 
     <p>I replaced that whole pipeline with a Node.js + PostgreSQL + Puppeteer Stealth dashboard. Weekly reporting now takes about 5 minutes — and the 5 minutes is just <em>looking</em> at the dashboard, not generating it.</p>
@@ -256,7 +261,7 @@ CREATE INDEX idx_rank_lookup ON rank_history (asin, keyword, week_start DESC);</
   <aside class="blog-next">
     <span class="blog-next-eyebrow">Next read</span>
     <a class="blog-next-card" href="/blog/finance-dashboards-playbook.html">
-      <h3>I built 4 finance dashboards in 18 months — the React + Node playbook that worked every time</h3>
+      <h3>I built 4 finance dashboards in 9 months — the React + Node playbook that worked every time</h3>
       <span>Continue →</span>
     </a>
   </aside>

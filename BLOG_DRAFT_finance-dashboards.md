@@ -1,4 +1,4 @@
-# I built 4 finance dashboards in 18 months — here's the React + Node playbook that worked every time
+# I built 4 finance dashboards in 9 months — here's the React + Node playbook that worked every time
 
 *Tags: `react` `nodejs` `postgresql` `fintech` `dashboards`*
 
@@ -8,7 +8,7 @@ A CFO once told me: *"Our spreadsheets are correct. They're just always two week
 
 That sentence is the entire reason finance dashboards exist. Not because Excel is wrong — because the **moment** the right number arrives matters as much as the number itself.
 
-Over the last 18 months I've shipped four production finance dashboards for the same operations team — different domains (reconciliation, AR aging, P&L by entity, expense automation) but the **same underlying problems** every time. This is the playbook I now reuse on every new one.
+Over the last 9 months I've shipped four production finance dashboards for the same operations team — different domains (reconciliation, AR aging, P&L by entity, expense automation) but the **same underlying problems** every time. This is the playbook I now reuse on every new one.
 
 > **Quick question before you read on** — which one of these do you spend the most time on?
 > - Manual reconciliation between two source systems
