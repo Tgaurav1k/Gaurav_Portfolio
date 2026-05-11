@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/0.9">
+  <url>
+    <loc>https://gaurav-portfolio-g1ks.vercel.app/</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://gaurav-portfolio-g1ks.vercel.app/img/profilepic.png</image:loc>
+      <image:title>Gaurav Kumar — Full-Stack Developer</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gaurav-portfolio-g1ks.vercel.app/img/amazon-1.png</image:loc>
+      <image:title>Amazon India Analytics Dashboard</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gaurav-portfolio-g1ks.vercel.app/assets/neomail-1.png</image:loc>
+      <image:title>NeoMail — Email client</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gaurav-portfolio-g1ks.vercel.app/assets/gds-1.png</image:loc>
+      <image:title>Graphic Design Services</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gaurav-portfolio-g1ks.vercel.app/img/dashbaord_prl.png</image:loc>
+      <image:title>Finance Dashboard</image:title>
+    </image:image>
+  </url>
+</urlset>
