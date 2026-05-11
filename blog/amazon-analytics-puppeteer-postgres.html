@@ -71,15 +71,30 @@
 </head>
 <body class="blog-body">
 
-<header class="blog-header">
-  <a href="/" class="blog-back">← Gaurav<sup>©</sup></a>
-  <nav class="blog-nav">
-    <a href="/#work">Work</a>
-    <a href="/#about">About</a>
-    <a href="/blog/" aria-current="page">Blog</a>
-    <a href="/#contact">Contact</a>
-  </nav>
-</header>
+<nav class="nav scrolled" id="nav">
+<a href="/" class="nav-mark">Gaurav<sup>©</sup></a>
+<ul class="nav-links">
+<li><a href="/#work" data-preview="/img/amazon-1.png?v=3">Work</a></li>
+<li><a href="/#about" data-preview="/img/dashbaord_prl.png">About</a></li>
+<li><a href="/#services" data-preview="/assets/gds-1.png">Services</a></li>
+<li><a href="/blog/" data-preview="/img/amazon-1.png?v=3" aria-current="page">Blog</a></li>
+<li><a href="/#contact" data-preview="/assets/neomail-2.png">Contact</a></li>
+</ul>
+<a href="/#contact" class="nav-cta"><span class="dot"></span>Available</a>
+<button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+  <span></span><span></span><span></span>
+</button>
+<div class="nav-peek" id="navPeek" aria-hidden="true"><img id="navPeekImg" src="" alt=""></div>
+</nav>
+
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <a href="/#work">Work</a>
+  <a href="/#about">About</a>
+  <a href="/#services">Services</a>
+  <a href="/blog/">Blog</a>
+  <a href="/#contact">Contact</a>
+  <a href="/#contact" class="nav-overlay-cta"><span class="dot"></span>Available 2026</a>
+</div>
 
 <main class="blog-main blog-article">
   <article>
@@ -251,6 +266,34 @@ CREATE INDEX idx_rank_lookup ON rank_history (asin, keyword, week_start DESC);</
   <span>© 2026 Gaurav Kumar</span>
   <a href="/">← Back to portfolio</a>
 </footer>
+
+<script>
+(function(){
+  const nav = document.getElementById('nav');
+  if (nav){
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+  const btn = document.getElementById('navHamburger');
+  const overlay = document.getElementById('navOverlay');
+  if (btn && overlay){
+    const open = () => { btn.classList.add('open'); overlay.classList.add('open'); btn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; };
+    const close = () => { btn.classList.remove('open'); overlay.classList.remove('open'); btn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; };
+    btn.addEventListener('click', () => btn.classList.contains('open') ? close() : open());
+    overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  }
+  const peek = document.getElementById('navPeek');
+  const peekImg = document.getElementById('navPeekImg');
+  if (peek && peekImg){
+    document.querySelectorAll('.nav-links a[data-preview]').forEach(a => {
+      a.addEventListener('mouseenter', () => { peekImg.src = a.dataset.preview; peek.classList.add('show'); });
+      a.addEventListener('mouseleave', () => peek.classList.remove('show'));
+    });
+  }
+})();
+</script>
 
 </body>
 </html>
