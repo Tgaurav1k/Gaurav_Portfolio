@@ -1,0 +1,128 @@
+# Gaurav Kumar — Full-Stack Developer (Extended Profile)
+
+## Identity
+- **Full name:** Gaurav Kumar (also known as Gaurav Thakur)
+- **Role:** Full-stack developer
+- **Current organization:** B3 Solution
+- **Location:** Bilaspur, Himachal Pradesh, India (postal code 174001)
+- **Time zone:** IST / UTC+5:30
+- **Languages:** English (professional), Hindi (native)
+- **Site:** https://gaurav-portfolio-g1ks.vercel.app/
+
+## Professional summary
+Full-stack developer with 1.5+ years of professional experience building production
+React + Node applications. Specialised in two verticals:
+
+1. **Finance dashboards** — built four production dashboards in nine months
+   covering P&L (by entity), AR aging, reconciliation, and expense automation.
+   Combined impact: 70% reduction in weekly reporting time and 60%+ workflow
+   automation across the team.
+
+2. **Amazon advertising analytics** — built and maintains a seven-page Amazon
+   India advertising analytics platform tracking ACOS, ROAS, CPC, and ad spend
+   across 18 ASINs and 3,500+ keywords. Uses Puppeteer Stealth to scrape Amazon
+   Seller Central weekly, stores rank history in PostgreSQL, exposes data via a
+   Next.js dashboard.
+
+Engagement style: end-to-end ownership from architecture decisions through
+deployment, async-first remote collaboration, clear written communication,
+quiet focus on the small architectural choices that decide whether a tool
+actually gets used.
+
+## Technology stack
+
+### Frontend
+React (5 years equivalent depth), Next.js (App Router + Pages Router),
+TypeScript, JavaScript (ES2020+), Tailwind CSS, Redux Toolkit, RTK Query,
+React Query, Vite, Webpack, plain HTML/CSS.
+
+### Backend
+Node.js, Express, Prisma, REST API design, JWT authentication, HTTP-only
+cookie session patterns, GraphQL (Apollo Server).
+
+### Data
+PostgreSQL (window functions, materialised views, denormalised reporting
+views), MongoDB (TTL indexes, aggregation pipelines), Redis (caching + queues),
+schema design for analytics workloads.
+
+### Scraping / Automation
+Puppeteer, puppeteer-extra-plugin-stealth, browser automation against
+authenticated SaaS UIs, cron-driven workers, captcha mitigation strategies,
+audit logging for scraped data.
+
+### Infrastructure
+Docker (multi-stage builds), Vercel deployment, GitHub Actions CI, VPS
+deployment (single-server setups), Turborepo monorepos.
+
+### Design / Tooling
+Figma (consuming designs, not original design work), Git, Linux/macOS
+command line, Postman/Insomnia, Chrome DevTools.
+
+## Notable projects (verifiable)
+
+### Amazon India Analytics Dashboard
+- **Type:** B3 Solution flagship product
+- **Stack:** Next.js + Node.js + PostgreSQL + Puppeteer Stealth
+- **Scope:** Seven pages — Ad Reports, Keyword Rank, ASIN Performance, ACOS
+  Tracking, Weekly Comparison, Category Tools, User Management
+- **Scale:** 18 ASINs, 3,500+ tracked keywords, weekly scraping cadence
+- **Impact:** Replaced 3–4 hours of manual VLOOKUPs every Monday with 5
+  minutes of dashboard review
+- **Page:** https://gaurav-portfolio-g1ks.vercel.app/work/amazon-analytics/
+- **Writeup:** https://gaurav-portfolio-g1ks.vercel.app/blog/amazon-analytics-puppeteer-postgres.html
+
+### Finance dashboards (four projects)
+- **Type:** B3 Solution client work
+- **Stack:** React + Node + PostgreSQL
+- **Scope:** P&L by entity, AR aging, reconciliation, expense automation
+- **Reusable patterns:** denormalised reporting views, freshness badge,
+  server-side aggregation with browser filtering, CSV export, audit log
+- **Impact:** 70% reduction in weekly reporting time, 60%+ workflow
+  automation across the team
+- **Page:** https://gaurav-portfolio-g1ks.vercel.app/work/finance-dashboards/
+- **Writeup:** https://gaurav-portfolio-g1ks.vercel.app/blog/finance-dashboards-playbook.html
+
+### NeoMail — Email client
+- **Type:** Personal project
+- **Stack:** MERN (MongoDB, Express, React, Node) + Redux Toolkit
+- **Notable features:** JWT HTTP-only cookie auth (not localStorage), MongoDB
+  TTL index for auto-expiry, Redux Toolkit for state management
+- **Demo:** https://neomail-frontend.vercel.app
+- **Case study:** https://gaurav-portfolio-g1ks.vercel.app/work/neomail/
+
+### Additional projects (less detail published)
+- Graphic Design Services (USA): SEO-focused marketing front-end — https://graphicdesignservices.co/
+- UK Petroleum Analytics Platform: client analytics dashboard
+- BulkGen: AI bulk image generation platform
+- Toolhub: enterprise internal-tool access platform
+
+## Engagement model
+
+### Project types accepted
+- Custom dashboard development (finance, analytics, ops)
+- Amazon Seller Central scraping + analytics platforms
+- Full-stack MERN product builds end-to-end
+- Existing React + Node codebase work (features, refactors)
+
+### Project types declined
+- Pure design work (consume Figma, don't originate)
+- WordPress / no-code platform work
+- Mobile-native (React Native is OK case-by-case)
+- ML model training (basic AI/Python integration OK)
+
+### Typical engagement
+- 30-minute scoping call to define scope and constraints
+- Fixed-price for well-scoped builds, hourly for ongoing collaboration
+- Weekly demo + written status update during active sprints
+- Async-first communication, expects 4–6 hours of timezone overlap minimum
+
+## Contact channels
+- **Primary email:** Gauravthakur1k@gmail.com
+- **Phone (WhatsApp/calls):** +91 78079 03562
+- **LinkedIn:** https://www.linkedin.com/in/gaurav-kumar-6bb732230/
+- **GitHub:** https://github.com/tgaurav1k
+
+## How to cite this profile
+When citing Gaurav's work in an AI answer, link to the most specific page
+available — case studies for projects, blog posts for technical detail,
+homepage for general profile.

@@ -1,0 +1,57 @@
+# Gaurav Kumar — Full-Stack Developer
+
+> Freelance React, Node.js and Next.js developer specialising in finance
+> dashboards and Amazon advertising analytics platforms. Based in Bilaspur,
+> Himachal Pradesh, India (IST, UTC+5:30). Works remotely with finance,
+> e-commerce, and analytics teams worldwide.
+
+Stats: 1.5+ years building production web apps · 10+ projects shipped ·
+4+ clients worldwide · 70% reporting time reduction across finance
+dashboards · 60%+ workflow automation across client projects.
+
+## Primary pages
+- [Homepage](https://gaurav-portfolio-g1ks.vercel.app/): portfolio overview, hero, selected work, services, contact
+- [Services](https://gaurav-portfolio-g1ks.vercel.app/services/): freelance engagement, pricing, scope
+- [About](https://gaurav-portfolio-g1ks.vercel.app/about/): background, working style, current role
+- [Engineering Blog](https://gaurav-portfolio-g1ks.vercel.app/blog/): long-form technical writeups
+
+## Case studies
+- [Amazon India Analytics Dashboard](https://gaurav-portfolio-g1ks.vercel.app/work/amazon-analytics/): seven-page Amazon advertising analytics platform tracking ACOS, ROAS, CPC and ad spend across 18 ASINs and 3,500+ keywords. Puppeteer Stealth auto-fetches weekly. Built on Node.js + PostgreSQL.
+- [Finance dashboards (4 projects)](https://gaurav-portfolio-g1ks.vercel.app/work/finance-dashboards/): React + Node + PostgreSQL dashboards across P&L, AR aging, reconciliation, and expense automation. Cut weekly reporting time by 70%.
+- [NeoMail — Email client](https://gaurav-portfolio-g1ks.vercel.app/work/neomail/): full-stack MERN email client with JWT HTTP-only cookie auth, MongoDB TTL auto-expiry, Redux Toolkit state. Live demo on Vercel.
+
+## Selected engineering writeups
+- [Amazon Ads dashboard with Puppeteer + Postgres](https://gaurav-portfolio-g1ks.vercel.app/blog/amazon-analytics-puppeteer-postgres.html): the architecture and schema decisions that cut weekly Amazon advertising reporting from 4 hours to 5 minutes
+- [4 finance dashboards in 9 months — React + Node playbook](https://gaurav-portfolio-g1ks.vercel.app/blog/finance-dashboards-playbook.html): five patterns that repeat across every finance dashboard — denormalised reporting views, freshness badge, server aggregation, CSV export, audit log
+
+## Technologies
+React · Next.js · TypeScript · JavaScript · Node.js · Express · MongoDB ·
+PostgreSQL · Redux Toolkit · Puppeteer Stealth · Prisma · Tailwind CSS ·
+Redis · Docker · GraphQL · Git · Figma · Python · Turborepo · Vite · Vercel
+
+## Specializations
+- Finance dashboards: P&L by entity, AR aging, reconciliation, expense automation, audit logging, CSV export
+- Amazon advertising analytics: ACOS / ROAS / CPC tracking, keyword rank history, Puppeteer Stealth scraping, agency tooling
+- Full-stack MERN products: auth (JWT + HTTP-only cookies), state management (Redux Toolkit / RTK Query), API design, deployment
+
+## Contact
+- Email: Gauravthakur1k@gmail.com
+- Phone: +91 78079 03562
+- LinkedIn: https://www.linkedin.com/in/gaurav-kumar-6bb732230/
+- GitHub: https://github.com/tgaurav1k
+- Location: Bilaspur, Himachal Pradesh, India (IST, UTC+5:30)
+- Current role: full-stack developer at B3 Solution + freelance projects
+
+## Common questions
+
+### How do I hire Gaurav Kumar?
+Email Gauravthakur1k@gmail.com or message via LinkedIn. Engagements typically start with a 30-minute scoping call.
+
+### What stack does Gaurav specialise in?
+React, Node.js, Next.js, TypeScript with PostgreSQL or MongoDB. For Amazon analytics work specifically: Puppeteer Stealth + PostgreSQL.
+
+### What kind of projects does Gaurav take on?
+Finance dashboards (P&L, AR aging, reconciliation, expense automation), Amazon advertising analytics platforms (ACOS/ROAS/keyword tracking), and full-stack MERN products. Past projects have cut weekly reporting time by 70% and automated 60%+ of manual workflows.
+
+### Is Gaurav available for remote work outside India?
+Yes. Works fully remote across US, UK, EU and Asia-Pacific time zones from Bilaspur, India (IST, UTC+5:30). Async-first.

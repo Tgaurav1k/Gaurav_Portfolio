@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Finance Dashboards (React + Node) — Case Study</title>
+<meta name="description" content="Case study: four production finance dashboards in 9 months — P&L, AR aging, reconciliation, expense automation. React + Node + PostgreSQL. 70% reporting time cut, 60%+ workflow automation.">
+<meta name="author" content="Gaurav Kumar">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" href="https://gaurav-portfolio-g1ks.vercel.app/work/finance-dashboards/">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Gaurav Kumar — Portfolio">
+<meta property="og:title" content="Finance Dashboards (React + Node) — Case Study">
+<meta property="og:description" content="Four production finance dashboards in 9 months. 70% reporting time cut, 60%+ workflow automation. React + Node + PostgreSQL.">
+<meta property="og:url" content="https://gaurav-portfolio-g1ks.vercel.app/work/finance-dashboards/">
+<meta property="og:image" content="https://gaurav-portfolio-g1ks.vercel.app/img/dashbaord_prl.png">
+<meta property="og:locale" content="en_IN">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Finance Dashboards (React + Node) — Case Study">
+<meta name="twitter:description" content="Four finance dashboards, 9 months. 70% reporting time cut. The patterns that repeated.">
+<meta name="twitter:image" content="https://gaurav-portfolio-g1ks.vercel.app/img/dashbaord_prl.png">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "@id": "https://gaurav-portfolio-g1ks.vercel.app/work/finance-dashboards/#case-study",
+  "name": "Finance Dashboards (React + Node + PostgreSQL)",
+  "headline": "Four finance dashboards in 9 months — Case Study",
+  "description": "Production finance dashboards for P&L by entity, AR aging, reconciliation, and expense automation. React + Node + PostgreSQL. Cut weekly reporting time by 70%, automated 60%+ of manual workflows.",
+  "url": "https://gaurav-portfolio-g1ks.vercel.app/work/finance-dashboards/",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://gaurav-portfolio-g1ks.vercel.app/img/dashbaord_prl.png"
+  },
+  "author": { "@type": "Person", "@id": "https://gaurav-portfolio-g1ks.vercel.app/#gaurav", "name": "Gaurav Kumar" },
+  "creator": { "@type": "Person", "@id": "https://gaurav-portfolio-g1ks.vercel.app/#gaurav" },
+  "datePublished": "2026-05-11",
+  "dateModified": "2026-05-28",
+  "keywords": "React finance dashboard, Node.js dashboard, PostgreSQL reporting view, AR aging dashboard, P&L dashboard, reconciliation dashboard, expense automation, audit log",
+  "about": [
+    {"@type": "Thing", "name": "Finance Dashboards"},
+    {"@type": "Thing", "name": "Dashboard Development"},
+    {"@type": "Thing", "name": "Reporting Automation"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gaurav-portfolio-g1ks.vercel.app/"},
+    {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://gaurav-portfolio-g1ks.vercel.app/#work"},
+    {"@type": "ListItem", "position": 3, "name": "Finance Dashboards", "item": "https://gaurav-portfolio-g1ks.vercel.app/work/finance-dashboards/"}
+  ]
+}
+</script>
+</head>
+<body class="blog-body">
+
+<nav class="nav scrolled" id="nav">
+<a href="/" class="nav-mark">Gaurav<sup>©</sup></a>
+<ul class="nav-links">
+<li><a href="/#work" aria-current="page">Work</a></li>
+<li><a href="/about/">About</a></li>
+<li><a href="/services/">Services</a></li>
+<li><a href="/blog/">Blog</a></li>
+<li><a href="/#contact">Contact</a></li>
+</ul>
+<a href="/#contact" class="nav-cta"><span class="dot"></span>Available</a>
+<button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+  <span></span><span></span><span></span>
+</button>
+</nav>
+
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <a href="/#work">Work</a>
+  <a href="/about/">About</a>
+  <a href="/services/">Services</a>
+  <a href="/blog/">Blog</a>
+  <a href="/#contact">Contact</a>
+  <a href="/#contact" class="nav-overlay-cta"><span class="dot"></span>Available 2026</a>
+</div>
+
+<main class="blog-main blog-article">
+  <article>
+
+    <div class="blog-article-meta">
+      <a href="/">Home</a>
+      <span>·</span>
+      <a href="/#work">Work</a>
+      <span>·</span>
+      <span>Finance Dashboards</span>
+    </div>
+
+    <h1 class="blog-article-title">Four finance dashboards in nine months <em class="serif">— case study</em></h1>
+
+    <figure class="blog-article-hero">
+      <picture>
+        <source srcset="/img/dashbaord_prl.webp" type="image/webp">
+        <img src="/img/dashbaord_prl.png" alt="Finance dashboard — P&L view built with React, Node and PostgreSQL" width="1604" height="981">
+      </picture>
+      <figcaption>P&amp;L by entity — one of the four dashboards. Server-side aggregation in Postgres, browser-side filtering in React, CSV export and audit log on every action.</figcaption>
+    </figure>
+
+    <p class="blog-article-lede">Four production finance dashboards built at B3 Solution between July 2024 and April 2025: P&amp;L by entity, AR aging, bank-to-ledger reconciliation, and expense automation with approval workflows. React + Node + PostgreSQL across all four. Combined impact: weekly reporting time cut by 70%, 60%+ of manual workflows automated, four finance teams that now open the dashboard every Monday instead of a spreadsheet.</p>
+
+    <h2>The four projects</h2>
+
+    <h3>1. P&amp;L by entity</h3>
+    <p>Multi-entity P&amp;L with drill-down to ledger account. Real-time roll-up from individual entity ledgers into a consolidated view with elimination entries. Server-rendered first paint, client-side filtering for the analyst loop.</p>
+
+    <h3>2. AR aging</h3>
+    <p>Accounts-receivable aging buckets (0–30 / 31–60 / 61–90 / 90+ days) with cohort tracking week-over-week. Customer-level drill-in showing every invoice, every payment, and the aging trajectory.</p>
+
+    <h3>3. Bank-to-ledger reconciliation</h3>
+    <p>Daily bank statement import (CSV upload + parser), automatic matching to ledger entries on amount + date + memo, and a manual reconciliation queue for everything the matcher could not resolve. Replaced four hours of daily reconciliation with about 30 minutes of exception review.</p>
+
+    <h3>4. Expense automation</h3>
+    <p>Employee expense submission with receipt OCR, multi-level approval workflow (manager → finance → CFO depending on amount), and direct push to the accounting system once approved. Includes a freshness badge and an audit log on every state transition.</p>
+
+    <h2>The five patterns that repeated</h2>
+
+    <p>Different domains, same five underlying patterns:</p>
+
+    <ol>
+      <li><strong>Denormalised reporting view.</strong> Every dashboard reads from a PostgreSQL view that is denormalised for the dashboard's exact queries — not the transactional schema. Faster queries, simpler frontend code, fewer joins to debug.</li>
+      <li><strong>Freshness badge.</strong> Every page shows when the underlying data was last refreshed. Finance teams will not trust a number they cannot date.</li>
+      <li><strong>Server-side aggregation with browser filtering.</strong> Heavy aggregations happen in Postgres; the frontend gets pre-aggregated rows and filters them locally. UX is instant, server load is bounded.</li>
+      <li><strong>CSV export, non-negotiable.</strong> Every list view and every chart has a CSV export. Finance teams will use the dashboard to find the numbers, then drop them into Excel. Pretending otherwise loses adoption.</li>
+      <li><strong>Audit log.</strong> Every state-changing action (approval, override, manual reconciliation) writes an immutable log entry. This is the single feature that won month-end trust.</li>
+    </ol>
+
+    <p>The <a href="/blog/finance-dashboards-playbook.html">full playbook</a> walks through each pattern with code snippets and the reasoning behind it.</p>
+
+    <h2>Stack</h2>
+
+    <ul>
+      <li><strong>Frontend:</strong> React + Tailwind, React Query for server state, virtualised tables for 10,000+ row views</li>
+      <li><strong>Backend:</strong> Node.js + Express + Prisma, REST API with thin controllers and most logic in Postgres</li>
+      <li><strong>Database:</strong> PostgreSQL — denormalised reporting views, materialised views for the slow ones, regular indexed reads otherwise</li>
+      <li><strong>Auth:</strong> JWT in HTTP-only cookies, role-based access control (admin / finance / approver / viewer)</li>
+      <li><strong>Hosting:</strong> Vercel for the frontend, single VPS for the API and Postgres, weekly automated backups</li>
+    </ul>
+
+    <h2>Results, in numbers</h2>
+
+    <div class="about-stats">
+      <div class="about-stat"><div class="num">04+</div><div class="lbl">Dashboards shipped</div></div>
+      <div class="about-stat"><div class="num">70%</div><div class="lbl">Weekly reporting time cut</div></div>
+      <div class="about-stat"><div class="num">60%+</div><div class="lbl">Workflow automation</div></div>
+      <div class="about-stat"><div class="num">9 mo</div><div class="lbl">From kickoff to fourth dashboard</div></div>
+    </div>
+
+    <h2>Related</h2>
+
+    <ul>
+      <li><a href="/blog/finance-dashboards-playbook.html">Engineering writeup: the five patterns in detail</a></li>
+      <li><a href="/services/">Hire me to build a finance dashboard for your team →</a></li>
+    </ul>
+
+    <section class="blog-cta" style="margin-top:3rem">
+      <p>Finance team drowning in spreadsheets? <a href="mailto:Gauravthakur1k@gmail.com">Gauravthakur1k@gmail.com</a> — the first 30-minute scoping call is free.</p>
+    </section>
+
+  </article>
+</main>
+
+<footer class="blog-footer">
+  <span>© 2026 Gaurav Kumar</span>
+  <a href="/">← Back to portfolio</a>
+</footer>
+
+<script>
+(function(){
+  const nav = document.getElementById('nav');
+  if (nav){
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+  const btn = document.getElementById('navHamburger');
+  const overlay = document.getElementById('navOverlay');
+  if (btn && overlay){
+    const open = () => { btn.classList.add('open'); overlay.classList.add('open'); btn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; };
+    const close = () => { btn.classList.remove('open'); overlay.classList.remove('open'); btn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; };
+    btn.addEventListener('click', () => btn.classList.contains('open') ? close() : open());
+    overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  }
+})();
+</script>
+</body>
+</html>

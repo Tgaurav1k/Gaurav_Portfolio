@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Amazon India Analytics Dashboard — Case Study</title>
+<meta name="description" content="Case study: seven-page Amazon advertising analytics platform tracking ACOS, ROAS, CPC and ad spend across 18 ASINs and 3,500+ keywords. Built on Next.js + Node.js + PostgreSQL + Puppeteer Stealth.">
+<meta name="author" content="Gaurav Kumar">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" href="https://gaurav-portfolio-g1ks.vercel.app/work/amazon-analytics/">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Gaurav Kumar — Portfolio">
+<meta property="og:title" content="Amazon India Analytics Dashboard — Case Study">
+<meta property="og:description" content="Seven-page Amazon advertising analytics platform tracking ACOS, ROAS, CPC and ad spend across 18 ASINs and 3,500+ keywords.">
+<meta property="og:url" content="https://gaurav-portfolio-g1ks.vercel.app/work/amazon-analytics/">
+<meta property="og:image" content="https://gaurav-portfolio-g1ks.vercel.app/img/amazon-1.png">
+<meta property="og:locale" content="en_IN">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Amazon India Analytics Dashboard — Case Study">
+<meta name="twitter:description" content="Seven-page Amazon analytics platform — ACOS, ROAS, keyword rank tracking via Puppeteer Stealth + Postgres.">
+<meta name="twitter:image" content="https://gaurav-portfolio-g1ks.vercel.app/img/amazon-1.png">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "@id": "https://gaurav-portfolio-g1ks.vercel.app/work/amazon-analytics/#case-study",
+  "name": "Amazon India Analytics Dashboard",
+  "headline": "Seven-page Amazon advertising analytics platform — Case Study",
+  "description": "Production Amazon advertising analytics platform tracking ACOS, ROAS, CPC and ad spend across 18 ASINs and 3,500+ keywords. Puppeteer Stealth weekly scraper + PostgreSQL store + Next.js dashboard.",
+  "url": "https://gaurav-portfolio-g1ks.vercel.app/work/amazon-analytics/",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://gaurav-portfolio-g1ks.vercel.app/img/amazon-1.png",
+    "width": 1604,
+    "height": 981
+  },
+  "author": {
+    "@type": "Person",
+    "@id": "https://gaurav-portfolio-g1ks.vercel.app/#gaurav",
+    "name": "Gaurav Kumar",
+    "url": "https://gaurav-portfolio-g1ks.vercel.app/"
+  },
+  "creator": {
+    "@type": "Person",
+    "@id": "https://gaurav-portfolio-g1ks.vercel.app/#gaurav"
+  },
+  "datePublished": "2026-05-11",
+  "dateModified": "2026-05-28",
+  "keywords": "Amazon advertising analytics, Puppeteer Stealth, ACOS dashboard, ROAS tracking, Amazon Seller Central scraper, PostgreSQL rank history, Node.js web scraping, Next.js dashboard",
+  "about": [
+    {"@type": "Thing", "name": "Amazon Advertising Analytics"},
+    {"@type": "Thing", "name": "Web Scraping"},
+    {"@type": "Thing", "name": "Dashboard Development"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gaurav-portfolio-g1ks.vercel.app/"},
+    {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://gaurav-portfolio-g1ks.vercel.app/#work"},
+    {"@type": "ListItem", "position": 3, "name": "Amazon Analytics", "item": "https://gaurav-portfolio-g1ks.vercel.app/work/amazon-analytics/"}
+  ]
+}
+</script>
+</head>
+<body class="blog-body">
+
+<nav class="nav scrolled" id="nav">
+<a href="/" class="nav-mark">Gaurav<sup>©</sup></a>
+<ul class="nav-links">
+<li><a href="/#work" aria-current="page">Work</a></li>
+<li><a href="/about/">About</a></li>
+<li><a href="/services/">Services</a></li>
+<li><a href="/blog/">Blog</a></li>
+<li><a href="/#contact">Contact</a></li>
+</ul>
+<a href="/#contact" class="nav-cta"><span class="dot"></span>Available</a>
+<button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+  <span></span><span></span><span></span>
+</button>
+</nav>
+
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <a href="/#work">Work</a>
+  <a href="/about/">About</a>
+  <a href="/services/">Services</a>
+  <a href="/blog/">Blog</a>
+  <a href="/#contact">Contact</a>
+  <a href="/#contact" class="nav-overlay-cta"><span class="dot"></span>Available 2026</a>
+</div>
+
+<main class="blog-main blog-article">
+  <article>
+
+    <div class="blog-article-meta">
+      <a href="/">Home</a>
+      <span>·</span>
+      <a href="/#work">Work</a>
+      <span>·</span>
+      <span>Amazon Analytics</span>
+    </div>
+
+    <h1 class="blog-article-title">Amazon India Analytics Dashboard <em class="serif">— case study</em></h1>
+
+    <figure class="blog-article-hero">
+      <picture>
+        <source srcset="/img/amazon-1.webp" type="image/webp">
+        <img src="/img/amazon-1.png" alt="Amazon India Analytics Dashboard — Ad Reports view with ACOS, ROAS and weekly rank tracking" width="1604" height="981">
+      </picture>
+      <figcaption>The Ad Reports view — one of seven pages — showing ACOS, ROAS, CPC, and weekly comparison across 18 ASINs.</figcaption>
+    </figure>
+
+    <p class="blog-article-lede">A seven-page Amazon India advertising analytics platform tracking ACOS, ROAS, CPC and ad spend across 18 ASINs and 3,500+ keywords. Puppeteer Stealth scrapes Seller Central weekly; PostgreSQL stores rank history; Next.js exposes the dashboard. Replaced 3–4 hours of weekly manual reporting with 5 minutes of dashboard review.</p>
+
+    <h2>The problem</h2>
+
+    <p>Every Monday morning, the ads team logged into Amazon Seller Central, downloaded reports for ~18 ASINs, opened each one in Excel, ran VLOOKUPs against last week's data, and spent 3–4 hours producing a single ACOS/ROAS report. By Friday the report was already stale. The Amazon Advertising API would have been the textbook answer, but two constraints ruled it out:</p>
+
+    <ol>
+      <li>Keyword-level rank data is not exposed cleanly through the official API — week-over-week organic vs sponsored rank for specific keywords requires the Seller Central UI views.</li>
+      <li>Onboarding the API for a third-party agency-managed account is a multi-week approval process that was not going to happen.</li>
+    </ol>
+
+    <h2>The solution at a glance</h2>
+
+    <p>Three moving parts running on a single small VPS:</p>
+
+    <pre class="blog-ascii"><code>┌──────────────────┐    cron (Mon 06:00 IST)    ┌──────────────────┐
+│ Puppeteer Stealth│───────────────────────────▶│ Seller Central UI│
+│  worker (Node)   │◀────── raw HTML/JSON ──────│                  │
+└────────┬─────────┘                            └──────────────────┘
+         │ parsed rows
+         ▼
+┌──────────────────┐                            ┌──────────────────┐
+│   PostgreSQL     │◀───────── reads ───────────│  Next.js dashbd  │
+│  (rank history,  │                            │ (ACOS/ROAS/CPR,  │
+│   ad spend, CPR) │                            │  W-o-W charts)   │
+└──────────────────┘                            └──────────────────┘</code></pre>
+
+    <h2>Stack</h2>
+
+    <ul>
+      <li><strong>Scraper:</strong> Node.js + <code>puppeteer-extra-plugin-stealth</code>, headless Chromium, cron-triggered Mondays 06:00 IST</li>
+      <li><strong>Database:</strong> PostgreSQL — one denormalised rank-history table indexed on (keyword_id, captured_at) for window-function queries</li>
+      <li><strong>Dashboard:</strong> Next.js (Pages Router) + React + Tailwind, server-rendered for first paint with client-side filtering</li>
+      <li><strong>Hosting:</strong> Single small DigitalOcean droplet, NGINX + PM2, weekly DB backup to S3</li>
+    </ul>
+
+    <h2>The seven pages</h2>
+
+    <ol>
+      <li><strong>Ad Reports</strong> — ACOS, ROAS, CPC, ad spend, click rate per ASIN, week-over-week</li>
+      <li><strong>Keyword Rank</strong> — organic and sponsored rank history per keyword, with sparkline trend</li>
+      <li><strong>ASIN Performance</strong> — per-ASIN deep dive with conversion funnel and category share</li>
+      <li><strong>Weekly Comparison</strong> — side-by-side last week vs this week deltas, colour-coded</li>
+      <li><strong>Category Tools</strong> — category-level performance breakdown with drill-down</li>
+      <li><strong>Activity Tool</strong> — audit log of every scrape, every parse, every write</li>
+      <li><strong>User Management</strong> — role-based access (admin, ads team, viewer)</li>
+    </ol>
+
+    <h2>The schema trick that mattered most</h2>
+
+    <p>The non-obvious decision was storing rank history as one denormalised flat table — <code>keyword_rank_history(keyword_id, asin, captured_at, organic_rank, sponsored_rank, ad_spend, impressions, clicks, acos, roas)</code> — instead of a normalised star schema. PostgreSQL window functions over this table (<code>LAG()</code>, <code>FIRST_VALUE() OVER (PARTITION BY keyword_id ORDER BY captured_at)</code>) made week-over-week and cohort queries trivially fast. The full architecture is documented in the <a href="/blog/amazon-analytics-puppeteer-postgres.html">accompanying engineering writeup</a>.</p>
+
+    <h2>What broke and how it was fixed</h2>
+
+    <p>The first version of the scraper used vanilla Puppeteer. It worked for exactly two runs before Seller Central started serving a captcha and locking the account out for ~6 hours. Two changes made it reliable:</p>
+
+    <ol>
+      <li><strong>Stealth plugin</strong> — patches <code>navigator.webdriver</code>, plugin arrays, the WebGL vendor string, and a dozen other bot-detection signals</li>
+      <li><strong>Persistent browser context</strong> — keep cookies and session storage across runs so each scrape looks like a returning user, not a fresh login</li>
+    </ol>
+
+    <h2>Results</h2>
+
+    <div class="about-stats">
+      <div class="about-stat"><div class="num">5 min</div><div class="lbl">Weekly reporting (was 3–4 hours)</div></div>
+      <div class="about-stat"><div class="num">7</div><div class="lbl">Pages shipped</div></div>
+      <div class="about-stat"><div class="num">18</div><div class="lbl">ASINs tracked</div></div>
+      <div class="about-stat"><div class="num">3,500+</div><div class="lbl">Keywords with rank history</div></div>
+    </div>
+
+    <h2>Related</h2>
+
+    <ul>
+      <li><a href="/blog/amazon-analytics-puppeteer-postgres.html">Engineering writeup: how I built it (architecture, schema, the part that broke)</a></li>
+      <li><a href="/services/">Hire me to build something similar →</a></li>
+    </ul>
+
+    <section class="blog-cta" style="margin-top:3rem">
+      <p>Building something on Amazon Seller Central and stuck on the data layer? <a href="mailto:Gauravthakur1k@gmail.com">Gauravthakur1k@gmail.com</a></p>
+    </section>
+
+  </article>
+</main>
+
+<footer class="blog-footer">
+  <span>© 2026 Gaurav Kumar</span>
+  <a href="/">← Back to portfolio</a>
+</footer>
+
+<script>
+(function(){
+  const nav = document.getElementById('nav');
+  if (nav){
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+  const btn = document.getElementById('navHamburger');
+  const overlay = document.getElementById('navOverlay');
+  if (btn && overlay){
+    const open = () => { btn.classList.add('open'); overlay.classList.add('open'); btn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; };
+    const close = () => { btn.classList.remove('open'); overlay.classList.remove('open'); btn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; };
+    btn.addEventListener('click', () => btn.classList.contains('open') ? close() : open());
+    overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  }
+})();
+</script>
+</body>
+</html>

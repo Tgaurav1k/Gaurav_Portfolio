@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>NeoMail — MERN Email Client (Case Study)</title>
+<meta name="description" content="Case study: NeoMail — full-stack MERN email client with JWT HTTP-only cookie auth, MongoDB TTL auto-expiry, and Redux Toolkit state management. Live demo on Vercel.">
+<meta name="author" content="Gaurav Kumar">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" href="https://gaurav-portfolio-g1ks.vercel.app/work/neomail/">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Gaurav Kumar — Portfolio">
+<meta property="og:title" content="NeoMail — MERN Email Client (Case Study)">
+<meta property="og:description" content="Full-stack MERN email client with JWT HTTP-only cookie auth, MongoDB TTL auto-expiry, Redux Toolkit state.">
+<meta property="og:url" content="https://gaurav-portfolio-g1ks.vercel.app/work/neomail/">
+<meta property="og:image" content="https://gaurav-portfolio-g1ks.vercel.app/assets/neomail-1.png">
+<meta property="og:locale" content="en_IN">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NeoMail — MERN Email Client">
+<meta name="twitter:description" content="Full-stack MERN email client with JWT HTTP-only cookie auth, MongoDB TTL auto-expiry.">
+<meta name="twitter:image" content="https://gaurav-portfolio-g1ks.vercel.app/assets/neomail-1.png">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://gaurav-portfolio-g1ks.vercel.app/work/neomail/#app",
+  "name": "NeoMail",
+  "applicationCategory": "CommunicationApplication",
+  "operatingSystem": "Web",
+  "url": "https://neomail-frontend.vercel.app",
+  "description": "Full-stack MERN email client with JWT HTTP-only cookie auth, MongoDB TTL auto-expiry, and Redux Toolkit state management.",
+  "image": "https://gaurav-portfolio-g1ks.vercel.app/assets/neomail-1.png",
+  "author": { "@type": "Person", "@id": "https://gaurav-portfolio-g1ks.vercel.app/#gaurav", "name": "Gaurav Kumar" },
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gaurav-portfolio-g1ks.vercel.app/"},
+    {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://gaurav-portfolio-g1ks.vercel.app/#work"},
+    {"@type": "ListItem", "position": 3, "name": "NeoMail", "item": "https://gaurav-portfolio-g1ks.vercel.app/work/neomail/"}
+  ]
+}
+</script>
+</head>
+<body class="blog-body">
+
+<nav class="nav scrolled" id="nav">
+<a href="/" class="nav-mark">Gaurav<sup>©</sup></a>
+<ul class="nav-links">
+<li><a href="/#work" aria-current="page">Work</a></li>
+<li><a href="/about/">About</a></li>
+<li><a href="/services/">Services</a></li>
+<li><a href="/blog/">Blog</a></li>
+<li><a href="/#contact">Contact</a></li>
+</ul>
+<a href="/#contact" class="nav-cta"><span class="dot"></span>Available</a>
+<button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+  <span></span><span></span><span></span>
+</button>
+</nav>
+
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <a href="/#work">Work</a>
+  <a href="/about/">About</a>
+  <a href="/services/">Services</a>
+  <a href="/blog/">Blog</a>
+  <a href="/#contact">Contact</a>
+  <a href="/#contact" class="nav-overlay-cta"><span class="dot"></span>Available 2026</a>
+</div>
+
+<main class="blog-main blog-article">
+  <article>
+
+    <div class="blog-article-meta">
+      <a href="/">Home</a>
+      <span>·</span>
+      <a href="/#work">Work</a>
+      <span>·</span>
+      <span>NeoMail</span>
+    </div>
+
+    <h1 class="blog-article-title">NeoMail <em class="serif">— a MERN email client</em></h1>
+
+    <figure class="blog-article-hero">
+      <picture>
+        <source srcset="/assets/neomail-1.webp" type="image/webp">
+        <img src="/assets/neomail-1.png" alt="NeoMail inbox view — full-stack MERN email client" width="1604" height="981">
+      </picture>
+      <figcaption>NeoMail inbox view. Full-stack MERN with JWT HTTP-only cookie auth, MongoDB TTL auto-expiry, and Redux Toolkit state.</figcaption>
+    </figure>
+
+    <p class="blog-article-lede">A self-contained MERN email client built as a deeper learning exercise on the auth and state patterns that real production apps use. The interesting parts: JWT in HTTP-only cookies (not localStorage), MongoDB TTL indexes for auto-expiring messages, and Redux Toolkit with normalised entity state instead of an ad-hoc store. <a href="https://neomail-frontend.vercel.app" target="_blank" rel="noopener">Live demo →</a></p>
+
+    <h2>Stack</h2>
+
+    <ul>
+      <li><strong>Frontend:</strong> React + Tailwind, Redux Toolkit + RTK Query for server state, Vite build</li>
+      <li><strong>Backend:</strong> Node.js + Express, JWT in HTTP-only cookies (refresh + access pair), bcrypt for password hashes</li>
+      <li><strong>Database:</strong> MongoDB Atlas with a TTL index on the <code>messages</code> collection's <code>expiresAt</code> field for automatic message expiry</li>
+      <li><strong>Deployment:</strong> Frontend on Vercel, backend on Render, MongoDB Atlas free tier</li>
+    </ul>
+
+    <h2>Why these three decisions matter</h2>
+
+    <h3>1. JWT in HTTP-only cookies, not localStorage</h3>
+    <p>The common React tutorial pattern is to store the JWT in <code>localStorage</code> and attach it to every request as a Bearer token. That makes XSS catastrophic — any injected script can read the token and impersonate the user. NeoMail stores the JWT in an HTTP-only cookie with <code>SameSite=Lax</code>. The cookie is unreadable from JavaScript; the browser attaches it automatically; the only attack surface that remains is CSRF, which is mitigated by SameSite and a separate CSRF token on state-changing routes.</p>
+
+    <h3>2. MongoDB TTL indexes for auto-expiry</h3>
+    <p>NeoMail messages auto-expire after a configurable interval. Instead of writing a cron job that scans for expired documents, the <code>messages</code> collection has a TTL index on <code>expiresAt</code>. MongoDB's background process deletes documents when the field's time is reached. One index declaration, zero cron, predictable behaviour. The trade-off is that TTL runs every 60 seconds — fine for an email client, not fine for sub-second expiry needs.</p>
+
+    <h3>3. Redux Toolkit with normalised entities</h3>
+    <p>Threads, messages, and folders are stored as normalised entity tables keyed by ID, not as nested arrays. Selectors compose from these tables. When a message updates, every view that derives from it updates with no manual prop drilling. This is the boring, correct way to use Redux Toolkit and it is the pattern I reach for on every dashboard now.</p>
+
+    <h2>What it does</h2>
+
+    <ul>
+      <li>Inbox, sent, drafts, trash with virtualised lists</li>
+      <li>Compose with autosave drafts every 5 seconds</li>
+      <li>Search across subjects and bodies (Mongo text index)</li>
+      <li>Folder management (create, rename, move messages)</li>
+      <li>Auto-expire messages after configurable interval</li>
+      <li>JWT refresh on token expiry with no user-visible re-login</li>
+    </ul>
+
+    <h2>Live and source</h2>
+
+    <ul>
+      <li>Live demo: <a href="https://neomail-frontend.vercel.app" target="_blank" rel="noopener">neomail-frontend.vercel.app</a></li>
+      <li>Source: <a href="https://github.com/tgaurav1k" target="_blank" rel="noopener">github.com/tgaurav1k</a> (look for the NeoMail repos — frontend and backend are separate)</li>
+    </ul>
+
+    <h2>Related</h2>
+
+    <ul>
+      <li><a href="/work/finance-dashboards/">Finance dashboards case study</a></li>
+      <li><a href="/work/amazon-analytics/">Amazon analytics case study</a></li>
+      <li><a href="/services/">Hire me to build something similar →</a></li>
+    </ul>
+
+    <section class="blog-cta" style="margin-top:3rem">
+      <p>Want a similar MERN product built? <a href="mailto:Gauravthakur1k@gmail.com">Gauravthakur1k@gmail.com</a></p>
+    </section>
+
+  </article>
+</main>
+
+<footer class="blog-footer">
+  <span>© 2026 Gaurav Kumar</span>
+  <a href="/">← Back to portfolio</a>
+</footer>
+
+<script>
+(function(){
+  const nav = document.getElementById('nav');
+  if (nav){
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+  const btn = document.getElementById('navHamburger');
+  const overlay = document.getElementById('navOverlay');
+  if (btn && overlay){
+    const open = () => { btn.classList.add('open'); overlay.classList.add('open'); btn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; };
+    const close = () => { btn.classList.remove('open'); overlay.classList.remove('open'); btn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; };
+    btn.addEventListener('click', () => btn.classList.contains('open') ? close() : open());
+    overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  }
+})();
+</script>
+</body>
+</html>
