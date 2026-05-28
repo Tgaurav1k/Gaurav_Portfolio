@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>The Audit Log That Won Finance Teams' Trust</title>
+<meta name="description" content="A bare audit_log table, three rules for what goes in it, and a React side-panel UI. The single feature that turned skepticism into adoption on month-end close.">
+<meta name="author" content="Gaurav Kumar">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" href="https://gaurav-portfolio-g1ks.vercel.app/blog/react-audit-log-finance-dashboard.html">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Gaurav Kumar — Portfolio">
+<meta property="og:title" content="The audit log that won finance teams' trust">
+<meta property="og:description" content="A bare audit_log table, three rules, and a side panel — the feature that turned skepticism into adoption on month-end close.">
+<meta property="og:url" content="https://gaurav-portfolio-g1ks.vercel.app/blog/react-audit-log-finance-dashboard.html">
+<meta property="og:image" content="https://gaurav-portfolio-g1ks.vercel.app/img/dashbaord_prl.png">
+<meta property="article:published_time" content="2026-06-09T00:00:00+05:30">
+<meta property="article:modified_time" content="2026-06-09T00:00:00+05:30">
+<meta property="article:author" content="Gaurav Kumar">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="PostgreSQL">
+<meta property="article:tag" content="Finance dashboards">
+<meta property="og:locale" content="en_IN">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The audit log that won finance teams' trust">
+<meta name="twitter:description" content="One immutable table, three rules, a React side panel. The feature that decided adoption.">
+<meta name="twitter:image" content="https://gaurav-portfolio-g1ks.vercel.app/img/dashbaord_prl.png">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "The audit log that won finance teams' trust — React + Node implementation",
+  "description": "A bare audit_log table, three rules for what goes in it, and a React side-panel UI. The single feature that turned finance-team skepticism into adoption during month-end close.",
+  "datePublished": "2026-06-09T00:00:00+05:30",
+  "dateModified": "2026-06-09T00:00:00+05:30",
+  "author": { "@type": "Person", "name": "Gaurav Kumar", "url": "https://gaurav-portfolio-g1ks.vercel.app/" },
+  "publisher": { "@type": "Organization", "name": "Gaurav Kumar — Portfolio", "url": "https://gaurav-portfolio-g1ks.vercel.app/" },
+  "mainEntityOfPage": "https://gaurav-portfolio-g1ks.vercel.app/blog/react-audit-log-finance-dashboard.html",
+  "image": "https://gaurav-portfolio-g1ks.vercel.app/img/dashbaord_prl.png",
+  "articleSection": "Engineering",
+  "keywords": "React audit log, finance dashboard, immutable log table, append-only audit, PostgreSQL audit log, month-end close software, audit trail React"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gaurav-portfolio-g1ks.vercel.app/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://gaurav-portfolio-g1ks.vercel.app/blog/"},
+    {"@type": "ListItem", "position": 3, "name": "React + Node audit log for finance dashboards"}
+  ]
+}
+</script>
+</head>
+<body class="blog-body">
+
+<nav class="nav scrolled" id="nav">
+<a href="/" class="nav-mark">Gaurav<sup>©</sup></a>
+<ul class="nav-links">
+<li><a href="/#work">Work</a></li>
+<li><a href="/about/">About</a></li>
+<li><a href="/services/">Services</a></li>
+<li><a href="/blog/" aria-current="page">Blog</a></li>
+<li><a href="/#contact">Contact</a></li>
+</ul>
+<a href="/#contact" class="nav-cta"><span class="dot"></span>Available</a>
+<button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+  <span></span><span></span><span></span>
+</button>
+</nav>
+
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <a href="/#work">Work</a><a href="/about/">About</a><a href="/services/">Services</a><a href="/blog/">Blog</a><a href="/#contact">Contact</a>
+  <a href="/#contact" class="nav-overlay-cta"><span class="dot"></span>Available 2026</a>
+</div>
+
+<main class="blog-main blog-article">
+  <article>
+
+    <div class="blog-article-meta">
+      <a href="/blog/">Blog</a>
+      <span>·</span>
+      <time datetime="2026-06-09">June 9, 2026</time>
+      <span>·</span>
+      <span>7 min read</span>
+    </div>
+
+    <h1 class="blog-article-title">The audit log that won <em class="serif">finance teams' trust</em></h1>
+
+    <p class="blog-article-lede">A bare append-only table, three rules for what goes in it, and a React side panel showing the history of every number. The single feature that decided whether the dashboard got used during month-end close — or got bypassed for the same spreadsheet they were trying to replace.</p>
+
+    <h2>The first dashboard launch went badly</h2>
+
+    <p>The first finance dashboard I built launched on a Monday. By Wednesday, the team had reverted to their old spreadsheet. The reason was simple and surprising: a number on the dashboard didn't match what someone remembered from the previous week. They couldn't tell whether the dashboard was wrong, the source data had changed, or someone had edited something. Three plausible explanations, none of them disprovable. So they stopped trusting it.</p>
+
+    <p>Finance teams will not adopt a tool whose numbers they cannot trace.</p>
+
+    <p>The second dashboard launch — same client, six weeks later — included an audit log from day one. The audit log was used almost daily during the first month-end close. After that, adoption was permanent. Same product, same UX, same charts. One feature decided it.</p>
+
+    <h2>The schema</h2>
+
+    <p>The whole thing is one table, deliberately minimal:</p>
+
+    <pre class="blog-ascii"><code>CREATE TABLE audit_log (
+  id           bigserial   PRIMARY KEY,
+  occurred_at  timestamptz NOT NULL DEFAULT now(),
+  actor_id     bigint      REFERENCES users(id),
+  actor_name   text        NOT NULL,    -- denormalised snapshot
+  event_type   text        NOT NULL,    -- 'expense.approved', 'invoice.edited', ...
+  entity_type  text        NOT NULL,    -- 'expense', 'invoice', 'reconciliation_match'
+  entity_id    bigint      NOT NULL,
+  before       jsonb,                   -- previous state, NULL on creation
+  after        jsonb,                   -- new state, NULL on deletion
+  comment      text,                    -- optional human note
+  metadata     jsonb                    -- IP, user agent, request ID
+);
+
+CREATE INDEX ON audit_log (entity_type, entity_id, occurred_at DESC);
+CREATE INDEX ON audit_log (actor_id, occurred_at DESC);
+CREATE INDEX ON audit_log (occurred_at DESC);</code></pre>
+
+    <p>Three things to note:</p>
+
+    <ol>
+      <li><strong>It's append-only.</strong> No <code>UPDATE</code>, no <code>DELETE</code>. There's no audit_log retraction. Bad entries stay; you add a correcting entry next to them.</li>
+      <li><strong><code>actor_name</code> is denormalised on purpose.</strong> If a user is renamed or deleted, the log still says who did what at the time. Joining to <code>users</code> at read time would let history rewrite itself, which defeats the point.</li>
+      <li><strong><code>before</code> and <code>after</code> are JSONB.</strong> They store the entity's full state on either side of the change. Five years from now, if the entity schema has migrated four times, the audit row still tells you exactly what changed.</li>
+    </ol>
+
+    <h2>The three rules for what gets logged</h2>
+
+    <p>Logging everything floods the table and makes the UI useless. Logging too little makes it untrustworthy. The rules I settled on:</p>
+
+    <h3>Rule 1: Log every state change to a financial entity</h3>
+    <p>Expense submitted, approved, denied. Invoice created, edited, voided. Reconciliation match accepted, overridden, undone. The bar is: "would a finance person ever ask 'when did this change?'" If yes, log it.</p>
+
+    <h3>Rule 2: Log every override</h3>
+    <p>Automatic matches accepted silently are not logged (too noisy). Automatic matches the user changed manually <em>are</em> logged — and the log entry shows what the system suggested vs what the user picked. This is the most-used audit query during reconciliation work.</p>
+
+    <h3>Rule 3: Don't log reads</h3>
+    <p>Read tracking is a separate concern with different ergonomics — typically a different table, often only retained for 30 days, often not surfaced in the user UI. Mixing reads into the change log doubles the row count for no audit benefit.</p>
+
+    <h2>The Node side: a single wrapper, not scattered logger calls</h2>
+
+    <p>The mistake is to litter <code>auditLog.create(...)</code> calls through every controller. Half the time you forget; the other half, the entity changes but the log doesn't (and there's no test for that). The fix is to centralise:</p>
+
+    <pre class="blog-ascii"><code>// services/expenseService.js
+async function updateExpense(id, patch, ctx) {
+  return await db.transaction(async tx =&gt; {
+    const before = await tx.expense.findById(id);
+    const after  = await tx.expense.update(id, patch);
+
+    await tx.auditLog.create({
+      actor_id:    ctx.user.id,
+      actor_name:  ctx.user.name,
+      event_type:  'expense.updated',
+      entity_type: 'expense',
+      entity_id:   id,
+      before, after,
+      comment:     ctx.body.comment ?? null,
+      metadata:    { ip: ctx.ip, requestId: ctx.requestId }
+    });
+
+    return after;
+  });
+}</code></pre>
+
+    <p>Two non-negotiables: the audit write is in the same database transaction as the entity write (so they can never disagree), and the wrapper is the only place state-change happens (so logging cannot be forgotten).</p>
+
+    <h2>The React side: a side panel, not a separate page</h2>
+
+    <p>The audit log only earns trust if it's one click away from the number. Putting it on a separate page kills the workflow — by the time the user navigates there, they've forgotten what they were checking.</p>
+
+    <p>The pattern that worked: every entity row has a small "History" button. Click → a side panel slides in from the right showing all audit entries for that entity, newest first. Each entry shows: actor, time, what changed (a JSON diff between <code>before</code> and <code>after</code>), and the optional comment. No paging unless an entity has &gt; 50 entries, which in practice almost never happens.</p>
+
+    <pre class="blog-ascii"><code>// HistoryPanel.jsx
+function HistoryPanel({ entityType, entityId, onClose }) {
+  const { data, isLoading } = useAuditLog(entityType, entityId);
+
+  return (
+    &lt;Drawer onClose={onClose}&gt;
+      &lt;h2&gt;History&lt;/h2&gt;
+      {isLoading ? &lt;Skeleton /&gt; : data.map(e =&gt; (
+        &lt;AuditEntry key={e.id} entry={e} /&gt;
+      ))}
+    &lt;/Drawer&gt;
+  );
+}
+
+function AuditEntry({ entry }) {
+  const diff = computeDiff(entry.before, entry.after);
+  return (
+    &lt;article&gt;
+      &lt;header&gt;
+        &lt;strong&gt;{entry.actor_name}&lt;/strong&gt; · {formatRelative(entry.occurred_at)}
+        &lt;Badge&gt;{entry.event_type}&lt;/Badge&gt;
+      &lt;/header&gt;
+      &lt;FieldDiff diff={diff} /&gt;
+      {entry.comment &amp;&amp; &lt;Note&gt;{entry.comment}&lt;/Note&gt;}
+    &lt;/article&gt;
+  );
+}</code></pre>
+
+    <p><code>computeDiff()</code> is small — about 30 lines — and just walks the keys of <code>before</code> and <code>after</code>, listing what's added, removed, or changed. The visual is two columns: red strikethrough on the left for old, green on the right for new. Familiar to anyone who's ever read a git diff.</p>
+
+    <h2>What this isn't</h2>
+
+    <p>Two honest limits:</p>
+
+    <ul>
+      <li><strong>It's not compliance.</strong> SOC 2, SOX, GDPR data-subject requests — those need encrypted at-rest storage, retention policies, and access-control on the log itself. The audit log described here is a trust feature, not a compliance feature. If your client needs both, design them together from day one.</li>
+      <li><strong>It's not a time machine.</strong> The log records changes; it does not let you "show me the dashboard as it was on March 15." That's a separate concept (event sourcing) with very different ergonomics. Most finance dashboards don't need it.</li>
+    </ul>
+
+    <h2>The wider pattern</h2>
+
+    <p>The audit log is one of five patterns I reuse on every finance dashboard. The full set — denormalised reporting view, freshness badge, server aggregation, CSV export, audit log — is in the <a href="/blog/finance-dashboards-playbook.html">React + Node finance dashboard playbook</a>, with the case study on the <a href="/work/finance-dashboards/">work page</a>.</p>
+
+    <section class="blog-cta" style="margin-top:3rem">
+      <p>Building a finance dashboard and worried about adoption? <a href="mailto:Gauravthakur1k@gmail.com">Gauravthakur1k@gmail.com</a> · <a href="/services/">Services →</a></p>
+    </section>
+
+  </article>
+</main>
+
+<footer class="blog-footer">
+  <span>© 2026 Gaurav Kumar</span>
+  <a href="/blog/">← All posts</a>
+</footer>
+
+<script>
+(function(){
+  const nav = document.getElementById('nav');
+  if (nav){
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+  const btn = document.getElementById('navHamburger');
+  const overlay = document.getElementById('navOverlay');
+  if (btn && overlay){
+    const open = () => { btn.classList.add('open'); overlay.classList.add('open'); btn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; };
+    const close = () => { btn.classList.remove('open'); overlay.classList.remove('open'); btn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; };
+    btn.addEventListener('click', () => btn.classList.contains('open') ? close() : open());
+    overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  }
+})();
+</script>
+</body>
+</html>

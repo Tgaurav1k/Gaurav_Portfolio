@@ -1,0 +1,55 @@
+name: Publish scheduled blog posts
+
+# Runs daily at 01:00 UTC (06:30 IST). If any post in _drafts/schedule.json
+# has a publishDate <= today, it gets moved into blog/, with corresponding
+# entries inserted into sitemap.xml and blog/index.html, then committed.
+
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Force-publish all queued posts regardless of date'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-blog
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run publisher
+        run: |
+          if [ "${{ inputs.force }}" = "true" ]; then
+            node scripts/publish-scheduled.mjs --force
+          else
+            node scripts/publish-scheduled.mjs
+          fi
+
+      - name: Commit and push if changed
+        run: |
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "feat(blog): publish scheduled post(s) [skip ci]"
+          git push

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>The Postgres Window Function That Sped Up Rank History 50×</title>
+<meta name="description" content="How a single PostgreSQL window function turned an 8-second rank-history query into 0.15s. The schema decision behind the Amazon Analytics dashboard, with code.">
+<meta name="author" content="Gaurav Kumar">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" href="https://gaurav-portfolio-g1ks.vercel.app/blog/postgres-window-functions-rank-history.html">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Gaurav Kumar — Portfolio">
+<meta property="og:title" content="The Postgres window function that sped up rank history 50×">
+<meta property="og:description" content="Single LAG() query, denormalised reporting table, no joins. The schema decision behind Amazon Analytics rank history.">
+<meta property="og:url" content="https://gaurav-portfolio-g1ks.vercel.app/blog/postgres-window-functions-rank-history.html">
+<meta property="og:image" content="https://gaurav-portfolio-g1ks.vercel.app/img/amazon-1.png">
+<meta property="article:published_time" content="2026-06-02T00:00:00+05:30">
+<meta property="article:modified_time" content="2026-06-02T00:00:00+05:30">
+<meta property="article:author" content="Gaurav Kumar">
+<meta property="article:tag" content="PostgreSQL">
+<meta property="article:tag" content="Window functions">
+<meta property="article:tag" content="Analytics">
+<meta property="og:locale" content="en_IN">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Postgres window functions for rank history (50× speedup)">
+<meta name="twitter:description" content="One LAG() query replaced an 8-second join with a 0.15s scan. The schema decision behind it.">
+<meta name="twitter:image" content="https://gaurav-portfolio-g1ks.vercel.app/img/amazon-1.png">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "The PostgreSQL window function that made rank history 50× faster",
+  "description": "How a single window function (LAG with PARTITION BY) turned an 8-second rank-history query into a 0.15-second scan. The denormalised reporting schema behind the Amazon Analytics dashboard.",
+  "datePublished": "2026-06-02T00:00:00+05:30",
+  "dateModified": "2026-06-02T00:00:00+05:30",
+  "author": { "@type": "Person", "name": "Gaurav Kumar", "url": "https://gaurav-portfolio-g1ks.vercel.app/" },
+  "publisher": { "@type": "Organization", "name": "Gaurav Kumar — Portfolio", "url": "https://gaurav-portfolio-g1ks.vercel.app/" },
+  "mainEntityOfPage": "https://gaurav-portfolio-g1ks.vercel.app/blog/postgres-window-functions-rank-history.html",
+  "image": "https://gaurav-portfolio-g1ks.vercel.app/img/amazon-1.png",
+  "articleSection": "Engineering",
+  "keywords": "PostgreSQL window functions, LAG, rank history, denormalised reporting table, Amazon analytics, schema design, query optimization",
+  "proficiencyLevel": "Intermediate",
+  "dependencies": "PostgreSQL 11+"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gaurav-portfolio-g1ks.vercel.app/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://gaurav-portfolio-g1ks.vercel.app/blog/"},
+    {"@type": "ListItem", "position": 3, "name": "Postgres window functions for rank history"}
+  ]
+}
+</script>
+</head>
+<body class="blog-body">
+
+<nav class="nav scrolled" id="nav">
+<a href="/" class="nav-mark">Gaurav<sup>©</sup></a>
+<ul class="nav-links">
+<li><a href="/#work">Work</a></li>
+<li><a href="/about/">About</a></li>
+<li><a href="/services/">Services</a></li>
+<li><a href="/blog/" aria-current="page">Blog</a></li>
+<li><a href="/#contact">Contact</a></li>
+</ul>
+<a href="/#contact" class="nav-cta"><span class="dot"></span>Available</a>
+<button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+  <span></span><span></span><span></span>
+</button>
+</nav>
+
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <a href="/#work">Work</a><a href="/about/">About</a><a href="/services/">Services</a><a href="/blog/">Blog</a><a href="/#contact">Contact</a>
+  <a href="/#contact" class="nav-overlay-cta"><span class="dot"></span>Available 2026</a>
+</div>
+
+<main class="blog-main blog-article">
+  <article>
+
+    <div class="blog-article-meta">
+      <a href="/blog/">Blog</a>
+      <span>·</span>
+      <time datetime="2026-06-02">June 2, 2026</time>
+      <span>·</span>
+      <span>6 min read</span>
+    </div>
+
+    <h1 class="blog-article-title">The Postgres window function that made rank history <em class="serif">50× faster</em></h1>
+
+    <p class="blog-article-lede">The query was eight seconds. I needed it to be under one. Replacing a self-join with a single <code>LAG()</code> window function — and changing the underlying table to suit it — got me to 0.15s. Here's the schema decision behind the Amazon Analytics dashboard.</p>
+
+    <h2>The problem</h2>
+
+    <p>The Amazon Analytics dashboard tracks rank history for 3,500+ keywords across 18 ASINs. The "Keyword Rank" page shows, for each keyword: this week's rank, last week's rank, the delta, and a tiny sparkline of the last 12 weeks. Filter, sort, paginate.</p>
+
+    <p>The first version stored each weekly scrape as a row in <code>keyword_rank_history</code> and reconstructed the week-over-week delta with a self-join:</p>
+
+    <pre class="blog-ascii"><code>SELECT
+  curr.keyword_id,
+  curr.rank        AS this_week_rank,
+  prev.rank        AS last_week_rank,
+  curr.rank - prev.rank AS delta
+FROM keyword_rank_history curr
+JOIN keyword_rank_history prev
+  ON prev.keyword_id = curr.keyword_id
+ AND prev.captured_at = (
+       SELECT MAX(captured_at)
+       FROM keyword_rank_history
+       WHERE keyword_id = curr.keyword_id
+         AND captured_at &lt; curr.captured_at
+     )
+WHERE curr.captured_at = (SELECT MAX(captured_at) FROM keyword_rank_history);</code></pre>
+
+    <p>That works. It also took eight seconds against ~180,000 rows (3,500 keywords × ~50 weeks of history). The correlated subquery in the join condition was a nested-loop nightmare in the query plan.</p>
+
+    <h2>The fix in one query</h2>
+
+    <p>PostgreSQL's <code>LAG()</code> window function is built for exactly this. Given a window <em>partitioned by</em> keyword and <em>ordered by</em> time, <code>LAG()</code> returns the value of a column from the previous row in that window — without joining the table to itself.</p>
+
+    <pre class="blog-ascii"><code>SELECT
+  keyword_id,
+  rank                                        AS this_week_rank,
+  LAG(rank) OVER (
+    PARTITION BY keyword_id
+    ORDER BY captured_at
+  )                                           AS last_week_rank,
+  rank - LAG(rank) OVER (
+    PARTITION BY keyword_id
+    ORDER BY captured_at
+  )                                           AS delta,
+  captured_at
+FROM keyword_rank_history
+WHERE captured_at &gt;= NOW() - INTERVAL '14 days';</code></pre>
+
+    <p>One table scan. No self-join. PostgreSQL computes the window once and reuses it. Same 180,000-row table, same result, 0.15 seconds.</p>
+
+    <h2>The schema change that made it 50×, not 5×</h2>
+
+    <p>The query above was a 10× win. The 50× win came from changing the table itself. The original <code>keyword_rank_history</code> was normalised: <code>(keyword_id, captured_at, rank)</code>, with <code>keyword_id</code> joining to a separate <code>keywords</code> table for name, ASIN, category, and so on.</p>
+
+    <p>Every dashboard query joined back to that <code>keywords</code> table. Five tables involved in the simple "rank with metadata" query. The fix: store everything the dashboard needs in one denormalised reporting table.</p>
+
+    <pre class="blog-ascii"><code>CREATE TABLE keyword_rank_history (
+  id                bigserial PRIMARY KEY,
+  keyword_id        bigint    NOT NULL,
+  keyword_text      text      NOT NULL,   -- denormalised
+  asin              text      NOT NULL,   -- denormalised
+  category          text,                  -- denormalised
+  marketplace       text      NOT NULL,   -- denormalised
+  captured_at       timestamptz NOT NULL,
+  organic_rank      integer,
+  sponsored_rank    integer,
+  impressions       integer,
+  clicks            integer,
+  spend_micros      bigint
+);
+
+CREATE INDEX ON keyword_rank_history (keyword_id, captured_at DESC);
+CREATE INDEX ON keyword_rank_history (asin, captured_at DESC);
+CREATE INDEX ON keyword_rank_history (marketplace, captured_at DESC);</code></pre>
+
+    <p>The orthodoxy says don't denormalise. The orthodoxy assumes you're optimising for write throughput and storage. A weekly-write reporting table is the inverse: read-heavy, written once, queried thousands of times. Denormalisation is the correct call.</p>
+
+    <h2>Why <code>(keyword_id, captured_at DESC)</code> as the primary index</h2>
+
+    <p>Every dashboard query partitions by <code>keyword_id</code> and orders by <code>captured_at</code>. The window function uses the same partition + order. A composite index on <code>(keyword_id, captured_at DESC)</code> means PostgreSQL can walk the index in window order — no sort step. The <code>DESC</code> matters because the most common filter is "last 14 days" and we want the most recent rows first.</p>
+
+    <p>You can see this in <code>EXPLAIN ANALYZE</code>. Before the index, the plan included a Sort node consuming ~40% of execution time. After, no sort — just an Index Scan straight into the WindowAgg.</p>
+
+    <h2>What window functions are <em>not</em> good for</h2>
+
+    <p>Two honest weaknesses:</p>
+
+    <ol>
+      <li><strong>Cross-keyword comparisons.</strong> A window function operates within a partition. If you need "rank of keyword A compared to category average this week," that's a separate aggregate, not a window. Window functions are for intra-series math (this row vs prior row of same keyword), not inter-series.</li>
+      <li><strong>Bounded historical windows.</strong> <code>LAG(rank, 4)</code> gets the rank from 4 rows back — but "4 rows back" only equals "4 weeks back" if there are no missing weeks. If your scraper failed twice, <code>LAG(rank, 4)</code> is no longer "4 weeks ago." For accurate week-over-week, range on the timestamp explicitly: <code>WHERE captured_at &gt;= NOW() - INTERVAL '14 days'</code> then take the two distinct weeks the window produces.</li>
+    </ol>
+
+    <h2>The wider lesson</h2>
+
+    <p>The window-function pattern (<code>LAG</code>, <code>FIRST_VALUE</code>, <code>NTH_VALUE</code>, <code>AVG OVER</code>) replaces a whole category of self-join queries that look ergonomic but plan terribly. Anywhere you're writing "the previous N rows of this entity" or "the running total per entity," there's almost certainly a window function that's both shorter and faster.</p>
+
+    <p>For dashboards specifically, the combination that keeps paying off:</p>
+
+    <ol>
+      <li>One denormalised reporting table per dashboard surface</li>
+      <li>Composite index matching the dashboard's primary partition + order</li>
+      <li>Window functions instead of self-joins for "compare to previous" math</li>
+    </ol>
+
+    <p>The full architecture this query is part of — Puppeteer scraper, Postgres store, Next.js dashboard — is in the <a href="/blog/amazon-analytics-puppeteer-postgres.html">Amazon Ads analytics writeup</a>, with the broader case study on the <a href="/work/amazon-analytics/">work page</a>.</p>
+
+    <section class="blog-cta" style="margin-top:3rem">
+      <p>Building a reporting dashboard and stuck on a slow query? <a href="mailto:Gauravthakur1k@gmail.com">Gauravthakur1k@gmail.com</a> · <a href="/services/">Services →</a></p>
+    </section>
+
+  </article>
+</main>
+
+<footer class="blog-footer">
+  <span>© 2026 Gaurav Kumar</span>
+  <a href="/blog/">← All posts</a>
+</footer>
+
+<script>
+(function(){
+  const nav = document.getElementById('nav');
+  if (nav){
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+  const btn = document.getElementById('navHamburger');
+  const overlay = document.getElementById('navOverlay');
+  if (btn && overlay){
+    const open = () => { btn.classList.add('open'); overlay.classList.add('open'); btn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; };
+    const close = () => { btn.classList.remove('open'); overlay.classList.remove('open'); btn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; };
+    btn.addEventListener('click', () => btn.classList.contains('open') ? close() : open());
+    overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  }
+})();
+</script>
+</body>
+</html>

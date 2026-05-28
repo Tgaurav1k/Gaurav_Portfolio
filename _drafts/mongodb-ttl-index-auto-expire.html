@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>MongoDB TTL Indexes: Auto-Expire with One Line</title>
+<meta name="description" content="How NeoMail expires old messages with a single MongoDB TTL index — no cron, no scheduler, no cleanup code. The when, the why, and the gotchas.">
+<meta name="author" content="Gaurav Kumar">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" href="https://gaurav-portfolio-g1ks.vercel.app/blog/mongodb-ttl-index-auto-expire.html">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Gaurav Kumar — Portfolio">
+<meta property="og:title" content="MongoDB TTL indexes — auto-expire in one line, no cron">
+<meta property="og:description" content="How NeoMail expires old messages with one MongoDB TTL index. When to use it, when not to, and the gotchas.">
+<meta property="og:url" content="https://gaurav-portfolio-g1ks.vercel.app/blog/mongodb-ttl-index-auto-expire.html">
+<meta property="og:image" content="https://gaurav-portfolio-g1ks.vercel.app/assets/neomail-1.png">
+<meta property="article:published_time" content="2026-06-23T00:00:00+05:30">
+<meta property="article:modified_time" content="2026-06-23T00:00:00+05:30">
+<meta property="article:author" content="Gaurav Kumar">
+<meta property="article:tag" content="MongoDB">
+<meta property="article:tag" content="Database">
+<meta property="article:tag" content="Node.js">
+<meta property="og:locale" content="en_IN">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MongoDB TTL indexes — auto-expire in one line">
+<meta name="twitter:description" content="One index declaration, zero cron jobs. The pattern + gotchas.">
+<meta name="twitter:image" content="https://gaurav-portfolio-g1ks.vercel.app/assets/neomail-1.png">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "MongoDB TTL indexes: auto-expire data with one line, no cron",
+  "description": "How NeoMail expires old messages using a single MongoDB TTL index. When TTL indexes are the right tool, when they aren't, and the gotchas that catch most teams.",
+  "datePublished": "2026-06-23T00:00:00+05:30",
+  "dateModified": "2026-06-23T00:00:00+05:30",
+  "author": { "@type": "Person", "name": "Gaurav Kumar", "url": "https://gaurav-portfolio-g1ks.vercel.app/" },
+  "publisher": { "@type": "Organization", "name": "Gaurav Kumar — Portfolio", "url": "https://gaurav-portfolio-g1ks.vercel.app/" },
+  "mainEntityOfPage": "https://gaurav-portfolio-g1ks.vercel.app/blog/mongodb-ttl-index-auto-expire.html",
+  "image": "https://gaurav-portfolio-g1ks.vercel.app/assets/neomail-1.png",
+  "articleSection": "Engineering",
+  "keywords": "MongoDB TTL index, expireAfterSeconds, auto-expire collection, NeoMail, Node.js MongoDB, scheduled cleanup, document expiry"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gaurav-portfolio-g1ks.vercel.app/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://gaurav-portfolio-g1ks.vercel.app/blog/"},
+    {"@type": "ListItem", "position": 3, "name": "MongoDB TTL index for auto-expiry"}
+  ]
+}
+</script>
+</head>
+<body class="blog-body">
+
+<nav class="nav scrolled" id="nav">
+<a href="/" class="nav-mark">Gaurav<sup>©</sup></a>
+<ul class="nav-links">
+<li><a href="/#work">Work</a></li>
+<li><a href="/about/">About</a></li>
+<li><a href="/services/">Services</a></li>
+<li><a href="/blog/" aria-current="page">Blog</a></li>
+<li><a href="/#contact">Contact</a></li>
+</ul>
+<a href="/#contact" class="nav-cta"><span class="dot"></span>Available</a>
+<button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+  <span></span><span></span><span></span>
+</button>
+</nav>
+
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <a href="/#work">Work</a><a href="/about/">About</a><a href="/services/">Services</a><a href="/blog/">Blog</a><a href="/#contact">Contact</a>
+  <a href="/#contact" class="nav-overlay-cta"><span class="dot"></span>Available 2026</a>
+</div>
+
+<main class="blog-main blog-article">
+  <article>
+
+    <div class="blog-article-meta">
+      <a href="/blog/">Blog</a>
+      <span>·</span>
+      <time datetime="2026-06-23">June 23, 2026</time>
+      <span>·</span>
+      <span>5 min read</span>
+    </div>
+
+    <h1 class="blog-article-title">MongoDB TTL indexes <em class="serif">— auto-expire in one line</em></h1>
+
+    <p class="blog-article-lede">NeoMail expires old messages automatically. There's no cron job, no scheduler, no nightly cleanup script. The entire feature is one MongoDB index. When TTL indexes are the right tool, when they aren't, and the gotchas that catch most teams the first time.</p>
+
+    <h2>The pattern</h2>
+
+    <p>A TTL index in MongoDB is a regular index on a date field, with an extra option: <code>expireAfterSeconds</code>. MongoDB's background process scans this index roughly every 60 seconds and deletes documents whose indexed date is more than the configured number of seconds in the past.</p>
+
+    <p>For NeoMail, each message has an <code>expiresAt</code> field set at insert time. One index does the rest:</p>
+
+    <pre class="blog-ascii"><code>// One-time setup
+db.messages.createIndex(
+  { expiresAt: 1 },
+  { expireAfterSeconds: 0 }
+);
+
+// Insert with an absolute expiry date
+db.messages.insertOne({
+  to:        "user@example.com",
+  subject:   "Welcome",
+  body:      "...",
+  expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) // 30 days
+});</code></pre>
+
+    <p>That's the entire feature. After 30 days, the message disappears. No code runs to make this happen — MongoDB's TTL monitor handles it.</p>
+
+    <h2>Two modes (and which one to use)</h2>
+
+    <p>There are two ways to configure a TTL index. Pick the right one or you'll get surprised:</p>
+
+    <h3>Mode 1: Absolute expiry date (use this)</h3>
+
+    <pre class="blog-ascii"><code>db.messages.createIndex(
+  { expiresAt: 1 },
+  { expireAfterSeconds: 0 }   // ← zero
+);</code></pre>
+
+    <p>The indexed field is the <em>absolute time</em> at which the document should expire. The <code>expireAfterSeconds: 0</code> means "delete the document as soon as the indexed time has passed." This is the most flexible mode — each document can have its own expiry date, and you can change a document's expiry by updating the field.</p>
+
+    <h3>Mode 2: Fixed lifetime from insert</h3>
+
+    <pre class="blog-ascii"><code>db.sessions.createIndex(
+  { createdAt: 1 },
+  { expireAfterSeconds: 3600 }   // ← all docs expire 1 hour after createdAt
+);</code></pre>
+
+    <p>Every document expires the same duration after the indexed field's value. Simpler to reason about, but every document has the same lifetime. Good for sessions, rate-limit windows, short-lived caches.</p>
+
+    <p>I use Mode 1 for NeoMail because each message can have a custom expiry. I'd use Mode 2 for a sessions collection where every session is one hour.</p>
+
+    <h2>What TTL indexes are NOT good for</h2>
+
+    <p>Three honest limitations:</p>
+
+    <ol>
+      <li><strong>Sub-minute precision.</strong> The TTL monitor runs every 60 seconds. Documents expire within 60 seconds of their target, not at it. Fine for "delete after a week"; not fine for "delete this OTP exactly 30 seconds after sending."</li>
+      <li><strong>Cascading deletes.</strong> If <code>messages</code> have <code>attachments</code> as separate documents (or in S3), the TTL on <code>messages</code> doesn't touch the attachments. You either: also TTL-index the attachments table on the same field, or store everything as embedded subdocuments so they disappear together. Forgetting this is how teams end up with orphan attachment storage growing forever.</li>
+      <li><strong>Conditional expiry.</strong> "Delete only if the user is inactive" — TTL can't do that. The deletion criterion is purely "indexed time has passed." For conditional logic, you still need a cron.</li>
+    </ol>
+
+    <h2>Three gotchas</h2>
+
+    <p>The first time I used a TTL index, I lost about two hours to one of these. Each is in the docs. None is obvious unless you've read them.</p>
+
+    <h3>Gotcha 1: It has to be a <code>Date</code> object, not a Unix timestamp</h3>
+
+    <p>MongoDB's TTL monitor only acts on BSON Date fields. Storing the expiry as a Unix timestamp number won't work — the documents are inserted, no error appears, and they're never deleted. Always:</p>
+
+    <pre class="blog-ascii"><code>// CORRECT
+expiresAt: new Date(Date.now() + ms)
+
+// SILENTLY WRONG
+expiresAt: Date.now() + ms          // ← number, not Date
+expiresAt: (Date.now() + ms) / 1000 // ← Unix seconds, also wrong</code></pre>
+
+    <h3>Gotcha 2: The first sweep can be slow</h3>
+
+    <p>If you create a TTL index on a collection that already has millions of past-expiry documents, the first sweep is large — MongoDB will work through them at ~minutes per million on a small instance, blocking other write throughput. Mitigation: create the TTL index on a fresh collection, or batch-delete the existing past-expiry data manually first.</p>
+
+    <h3>Gotcha 3: It runs on the primary only (in a replica set)</h3>
+
+    <p>In a replica set, the TTL monitor only runs on the primary. The secondaries don't issue their own deletes — they replicate the deletes from the primary's oplog. This is correct behaviour, but it means a failover during a heavy TTL sweep can briefly delay deletions while the new primary takes over. Almost never an issue in practice; worth knowing for postmortems.</p>
+
+    <h2>Why I reach for it more often than I used to</h2>
+
+    <p>Before I knew TTL indexes well, the alternative was a nightly cron that scanned the collection and deleted past-expiry documents. That cron is:</p>
+
+    <ul>
+      <li>One more thing to monitor (did it run? did it fail?)</li>
+      <li>One more thing to deploy (the cron infrastructure itself)</li>
+      <li>A correctness risk on the day the cron is broken — documents stay forever, often silently, until storage bills surface the problem</li>
+    </ul>
+
+    <p>A TTL index has none of these. It's enforced by the database itself. It survives application redeploys, server restarts, failovers, and library version changes. If the database is up, expiry works. If the database is down, you have bigger problems than slightly-delayed expiries.</p>
+
+    <p>NeoMail's full architecture — auth, state, sync — is on the <a href="/work/neomail/">case study page</a>. The TTL index sits at line ~12 of the messages model file and has not been touched since.</p>
+
+    <section class="blog-cta" style="margin-top:3rem">
+      <p>Got data that needs to expire reliably? <a href="mailto:Gauravthakur1k@gmail.com">Gauravthakur1k@gmail.com</a> · <a href="/services/">Services →</a></p>
+    </section>
+
+  </article>
+</main>
+
+<footer class="blog-footer">
+  <span>© 2026 Gaurav Kumar</span>
+  <a href="/blog/">← All posts</a>
+</footer>
+
+<script>
+(function(){
+  const nav = document.getElementById('nav');
+  if (nav){
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+  const btn = document.getElementById('navHamburger');
+  const overlay = document.getElementById('navOverlay');
+  if (btn && overlay){
+    const open = () => { btn.classList.add('open'); overlay.classList.add('open'); btn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; };
+    const close = () => { btn.classList.remove('open'); overlay.classList.remove('open'); btn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; };
+    btn.addEventListener('click', () => btn.classList.contains('open') ? close() : open());
+    overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  }
+})();
+</script>
+</body>
+</html>
