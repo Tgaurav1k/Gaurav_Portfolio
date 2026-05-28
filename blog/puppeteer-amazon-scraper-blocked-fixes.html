@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Why My Puppeteer Scraper Got Blocked — 5 Fixes</title>
+<meta name="description" content="My Puppeteer scraper got captcha-locked on Amazon Seller Central after 2 runs. Here are the 5 fixes that made it run reliably every Monday — with code.">
+<meta name="author" content="Gaurav Kumar">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" href="https://gaurav-portfolio-g1ks.vercel.app/blog/puppeteer-amazon-scraper-blocked-fixes.html">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Gaurav Kumar — Portfolio">
+<meta property="og:title" content="Why my Puppeteer scraper got blocked — 5 fixes that worked">
+<meta property="og:description" content="Captcha-locked after 2 runs on Amazon Seller Central. Stealth plugin, persistent profile, human timing, captcha detection — the 5 fixes that made it reliable.">
+<meta property="og:url" content="https://gaurav-portfolio-g1ks.vercel.app/blog/puppeteer-amazon-scraper-blocked-fixes.html">
+<meta property="og:image" content="https://gaurav-portfolio-g1ks.vercel.app/img/amazon-1.png">
+<meta property="article:published_time" content="2026-05-28T00:00:00+05:30">
+<meta property="article:modified_time" content="2026-05-28T00:00:00+05:30">
+<meta property="article:author" content="Gaurav Kumar">
+<meta property="article:tag" content="Puppeteer">
+<meta property="article:tag" content="Amazon Seller Central">
+<meta property="article:tag" content="Web scraping">
+<meta property="article:tag" content="Node.js">
+<meta property="og:locale" content="en_IN">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why my Puppeteer scraper got blocked — 5 fixes">
+<meta name="twitter:description" content="Captcha-locked after 2 runs on Amazon Seller Central. The 5 fixes that made it reliable, with code.">
+<meta name="twitter:image" content="https://gaurav-portfolio-g1ks.vercel.app/img/amazon-1.png">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Why my Puppeteer scraper kept getting blocked — and the 5 fixes that worked",
+  "alternativeHeadline": "Five fixes for Puppeteer scrapers caught by Amazon Seller Central",
+  "description": "My Puppeteer scraper got captcha-locked on Amazon Seller Central after 2 runs. Stealth plugin, persistent profile, human timing, captcha detection — the 5 fixes that made it reliable.",
+  "datePublished": "2026-05-28T00:00:00+05:30",
+  "dateModified": "2026-05-28T00:00:00+05:30",
+  "author": {
+    "@type": "Person",
+    "name": "Gaurav Kumar",
+    "url": "https://gaurav-portfolio-g1ks.vercel.app/",
+    "sameAs": [
+      "https://github.com/tgaurav1k",
+      "https://www.linkedin.com/in/gaurav-kumar-6bb732230/"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Gaurav Kumar — Portfolio",
+    "url": "https://gaurav-portfolio-g1ks.vercel.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://gaurav-portfolio-g1ks.vercel.app/favicon.svg",
+      "width": 60,
+      "height": 60
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://gaurav-portfolio-g1ks.vercel.app/blog/puppeteer-amazon-scraper-blocked-fixes.html"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://gaurav-portfolio-g1ks.vercel.app/img/amazon-1.png",
+    "width": 1604,
+    "height": 981
+  },
+  "articleSection": "Engineering",
+  "keywords": "Puppeteer Stealth, Amazon Seller Central, captcha bypass, Node.js web scraping, headless Chrome detection, puppeteer-extra-plugin-stealth, browser automation, bot detection",
+  "proficiencyLevel": "Expert",
+  "dependencies": "Node.js, Puppeteer, puppeteer-extra, puppeteer-extra-plugin-stealth"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://gaurav-portfolio-g1ks.vercel.app/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://gaurav-portfolio-g1ks.vercel.app/blog/"},
+    {"@type": "ListItem", "position": 3, "name": "Puppeteer scraper blocked — 5 fixes"}
+  ]
+}
+</script>
+</head>
+<body class="blog-body">
+
+<nav class="nav scrolled" id="nav">
+<a href="/" class="nav-mark">Gaurav<sup>©</sup></a>
+<ul class="nav-links">
+<li><a href="/#work">Work</a></li>
+<li><a href="/about/">About</a></li>
+<li><a href="/services/">Services</a></li>
+<li><a href="/blog/" aria-current="page">Blog</a></li>
+<li><a href="/#contact">Contact</a></li>
+</ul>
+<a href="/#contact" class="nav-cta"><span class="dot"></span>Available</a>
+<button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+  <span></span><span></span><span></span>
+</button>
+</nav>
+
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <a href="/#work">Work</a>
+  <a href="/about/">About</a>
+  <a href="/services/">Services</a>
+  <a href="/blog/">Blog</a>
+  <a href="/#contact">Contact</a>
+  <a href="/#contact" class="nav-overlay-cta"><span class="dot"></span>Available 2026</a>
+</div>
+
+<main class="blog-main blog-article">
+  <article>
+
+    <div class="blog-article-meta">
+      <a href="/blog/">Blog</a>
+      <span>·</span>
+      <time datetime="2026-05-28">May 28, 2026</time>
+      <span>·</span>
+      <span>8 min read</span>
+    </div>
+
+    <h1 class="blog-article-title">Why my Puppeteer scraper kept getting blocked <em class="serif">— and the 5 fixes that worked</em></h1>
+
+    <figure class="blog-article-hero">
+      <picture>
+        <source srcset="/img/amazon-1.webp" type="image/webp">
+        <img src="/img/amazon-1.png" alt="Amazon India Analytics Dashboard — the system that depends on the scraper" width="1604" height="981">
+      </picture>
+      <figcaption>The dashboard the scraper feeds. None of this works if Seller Central locks you out on the second run.</figcaption>
+    </figure>
+
+    <p class="blog-article-lede">It was the second Monday morning. The cron log showed one line: <code>Error: captcha encountered</code>. The Seller Central account the client had given me access to was now locked for the next six hours. My first thought wasn't <em>"how do I fix the bot detection"</em> — it was <em>"how do I explain to the client that I broke their login."</em></p>
+
+    <p>I'd written what I thought was a careful Puppeteer scraper. Headless Chrome, a normal User-Agent, modest delays, polite navigation. It ran perfectly the first Monday. By the second Monday it was hard-blocked. Amazon's bot detection is more sophisticated than I expected — and I expected a lot.</p>
+
+    <p>Here's what was wrong, what I tried, and the five fixes that finally made the scraper run every Monday at 06:00 IST without anyone intervening — reliably, for months now.</p>
+
+    <h2>First, what Amazon is actually checking</h2>
+
+    <p>Before the fixes, the diagnosis. A vanilla Puppeteer browser — even running headless with a "normal" User-Agent — leaks at least a dozen signals that say "I am a robot". Amazon checks most of them. The big ones:</p>
+
+    <ul>
+      <li><code>navigator.webdriver</code> is <code>true</code> in any Chrome instance started by automation. Real browsers return <code>false</code> (or <code>undefined</code>).</li>
+      <li><code>navigator.plugins</code> is an empty array in Headless Chrome. Real Chrome has at least the PDF viewer and a couple of media plugins.</li>
+      <li><code>chrome.runtime</code> exists on real Chrome but is missing on the headless build.</li>
+      <li>WebGL's <code>UNMASKED_VENDOR_WEBGL</code> returns <code>"Google Inc."</code> in headless, but a real GPU vendor (NVIDIA, Intel, AMD) on a real machine.</li>
+      <li>The User-Agent literally contains the word <code>"HeadlessChrome"</code> by default. It's the first thing any detection script greps for.</li>
+      <li>Mouse movements and typing pace are robotic. A real user fidgets — they hover, they pause, they type at irregular rhythms. Puppeteer's default <code>page.type()</code> fires keystrokes at exactly 0 ms intervals unless told otherwise.</li>
+      <li>Screen dimensions, touch event support, and timezone often don't match the User-Agent's claimed OS — a known fingerprint inconsistency.</li>
+    </ul>
+
+    <p>Amazon almost certainly checks several more — but these are the ones that matter, in roughly the order they're checked. The fixes below address them in that order.</p>
+
+    <h2>Fix #1 — <code>puppeteer-extra-plugin-stealth</code></h2>
+
+    <p>The big one. <a href="https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth" target="_blank" rel="noopener">puppeteer-extra-plugin-stealth</a> patches roughly seventeen of the above signals automatically. It rewrites <code>navigator.webdriver</code>, fakes a plausible <code>navigator.plugins</code> array, restores <code>chrome.runtime</code>, intercepts the WebGL call, and a dozen smaller things.</p>
+
+    <p>The setup:</p>
+
+    <pre class="blog-ascii"><code>// npm install puppeteer puppeteer-extra puppeteer-extra-plugin-stealth
+
+const puppeteer    = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+puppeteer.use(StealthPlugin());
+
+const browser = await puppeteer.launch({
+  headless: 'new',
+  args: [
+    '--no-sandbox',
+    '--disable-blink-features=AutomationControlled',  // critical, see below
+    '--disable-features=IsolateOrigins,site-per-process'
+  ]
+});</code></pre>
+
+    <p>Two things that surprised me about this plugin:</p>
+
+    <ol>
+      <li><strong>The <code>--disable-blink-features=AutomationControlled</code> Chrome flag is critical and the plugin does <em>not</em> set it for you.</strong> Without it, Chrome itself advertises automation through a separate channel that the stealth plugin can't reach. You have to pass it explicitly in <code>args</code>.</li>
+      <li><strong>It is not magic.</strong> The plugin handles the obvious checks. Advanced fingerprinting — canvas fingerprints, audio fingerprints, font enumeration — passes through unmodified. For Seller Central it was enough. For some heavily-protected SaaS UIs (notably Cloudflare's "Pro" tier), stealth alone isn't.</li>
+    </ol>
+
+    <p>After this fix, my scraper got further into Seller Central than before — but it still tripped a captcha on the more sensitive pages, particularly the Advertising Reports flow where the keyword data lives. That's where the next four fixes came in.</p>
+
+    <h2>Fix #2 — Persistent browser context (don't log in fresh every time)</h2>
+
+    <p>Every fresh login is suspicious. Cookies, localStorage, IndexedDB, cached service workers — when a browser arrives at Seller Central with none of these set, it looks like a brand-new device that somehow already has the password. That's an anomaly Amazon flags.</p>
+
+    <p>The fix is to reuse the same Chrome profile across every run, using Puppeteer's <code>userDataDir</code> option:</p>
+
+    <pre class="blog-ascii"><code>const browser = await puppeteer.launch({
+  userDataDir: './chrome-profile-amazon',   // ← the key change
+  headless: 'new',
+  args: [/* ...same args as before */]
+});</code></pre>
+
+    <p>The workflow that comes with it:</p>
+
+    <ol>
+      <li><strong>First login is interactive.</strong> Run once on your laptop with <code>headless: false</code>, log in by hand, solve the initial 2FA challenge, accept any cookie banners. Close the browser cleanly. The <code>chrome-profile-amazon/</code> directory now contains every cookie and storage entry that real session has.</li>
+      <li><strong>Every cron run after that just reopens that profile.</strong> Amazon sees a "returning user" — same device fingerprint, same cookies, same recently-active session — not a "fresh login".</li>
+      <li><strong>The session does eventually expire</strong> and you'll need to re-do the interactive login. In my case it's roughly every couple of months — Amazon doesn't publish the policy, so it's empirical.</li>
+    </ol>
+
+    <p>One thing to be careful about: that profile directory contains your active session token. Treat it like a secret. <strong>Do not commit it to git.</strong> Add <code>chrome-profile-amazon/</code> to <code>.gitignore</code> immediately. Back it up to encrypted storage; restoring it is much faster than re-doing the interactive login.</p>
+
+    <h2>Fix #3 — A real-looking User-Agent (the obvious one)</h2>
+
+    <p>The stealth plugin removes <code>"HeadlessChrome"</code> from the User-Agent, but it picks a generic UA that may or may not match your scraper's actual environment. Set it explicitly to a current, real Chrome on the OS your VPS actually runs:</p>
+
+    <pre class="blog-ascii"><code>// VPS is Linux, so use a Linux Chrome UA — NOT Windows
+await page.setUserAgent(
+  'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 ' +
+  '(KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'
+);</code></pre>
+
+    <p>Three things that matter here:</p>
+
+    <ul>
+      <li><strong>Keep the Chrome version current.</strong> A UA claiming Chrome 95 in 2026 is itself suspicious — that version is years dead. Update the version string every few months.</li>
+      <li><strong>Match the UA's OS to your actual VPS OS.</strong> A "Windows" UA running on a Linux VPS produces fingerprint inconsistencies (timezone, system fonts, touch event support) that detection scripts cross-check.</li>
+      <li><strong>Don't rotate User-Agents randomly across runs.</strong> A returning user has one device, one UA. Random rotation is the opposite signal you want.</li>
+    </ul>
+
+    <h2>Fix #4 — Human-paced timing (randomized delays beat fast loops)</h2>
+
+    <p>Real users fidget. They hover for half a second before clicking. They take longer to type a long keyword than a short one. They occasionally pause mid-form for two seconds because something distracted them. Puppeteer's defaults do none of this.</p>
+
+    <pre class="blog-ascii"><code>const sleep = ms => new Promise(r => setTimeout(r, ms));
+const human = (min, max) => sleep(min + Math.random() * (max - min));
+
+// between major actions: 1.2-2.8 seconds, randomized
+await page.click('a[href*="campaigns"]');
+await human(1200, 2800);
+
+// between keystrokes: 80-140ms, randomized
+await page.type('input[name="search"]', keyword, {
+  delay: 80 + Math.random() * 60
+});
+await human(800, 1600);
+
+// occasionally, move the mouse to a "nothing" coordinate
+if (Math.random() &lt; 0.3) {
+  const box = await page.$eval('main', el => {
+    const r = el.getBoundingClientRect();
+    return { x: r.left + Math.random() * r.width, y: r.top + Math.random() * r.height };
+  });
+  await page.mouse.move(box.x, box.y, { steps: 12 });
+}</code></pre>
+
+    <p>The total run takes longer than it could — around half an hour, instead of the raw few minutes it'd take at full speed. That's fine. The cron at 06:00 IST gives you a four-hour budget before anyone on the client's team wakes up. Use it.</p>
+
+    <p>One small piece of paranoia that helps: the <code>page.mouse.move()</code> with <code>steps: 12</code>. That makes the cursor travel along a curved path with intermediate positions, instead of teleporting from A to B. It sounds excessive. It costs nothing. Helps.</p>
+
+    <h2>Fix #5 — Detect captcha, then stop. Don't retry.</h2>
+
+    <p>This is the fix that everyone skips, and it's the one that bit me hardest the first time. When the scraper <em>does</em> get served a captcha — and it will, eventually — retrying immediately is the worst possible response. Each retry escalates the block. Three retries in a row turned my six-hour lockout into a twenty-four-hour one.</p>
+
+    <p>The right pattern: detect captcha, log it, exit cleanly, alert a human, do not retry until the next scheduled run.</p>
+
+    <pre class="blog-ascii"><code>async function isCaptchaPage(page) {
+  return await page.evaluate(() =&gt; {
+    return !!(
+      document.querySelector('form[action*="captcha"]') ||
+      document.querySelector('#captchacharacters') ||
+      document.body.innerText.includes('Type the characters you see')
+    );
+  });
+}
+
+await page.goto(SELLER_CENTRAL_URL, { waitUntil: 'networkidle2' });
+
+if (await isCaptchaPage(page)) {
+  await logCaptchaEvent({ at: new Date(), url: page.url() });
+  await sendAlert('Amazon scraper hit captcha — pausing');
+  await browser.close();
+  process.exit(1);   // cron will run next Monday — DO NOT loop
+}</code></pre>
+
+    <p>Three rules I follow now:</p>
+
+    <ol>
+      <li><strong>Never auto-retry a captcha.</strong> Cron will rerun next Monday. That's the retry.</li>
+      <li><strong>Log every captcha event</strong> with timestamp, URL, and the user-agent in use. Patterns emerge. I noticed mine were clustering on long-weekend Mondays — Amazon presumably running tighter checks when traffic patterns shift.</li>
+      <li><strong>Alert a human.</strong> When captcha fires, it writes a row into the same audit-log table the dashboard reads from, with a distinct event type. The first thing I check on Monday morning is that table — if there's a captcha row, the latest data is from the previous week, not today. If two Mondays in a row hit captcha, that's the signal to do an interactive run with <code>headless: false</code> and see what changed.</li>
+    </ol>
+
+    <p>The captcha selectors above cover most cases I've seen, but Seller Central's captcha page markup does drift over time — when you implement this, verify the selectors against whatever your actual scraper hits in DevTools and adjust accordingly.</p>
+
+    <h2>What still occasionally breaks</h2>
+
+    <p>None of this is bulletproof. Three things still bite, in order of frequency:</p>
+
+    <ol>
+      <li><strong>Amazon UI changes break selectors.</strong> Twice in the last year, Amazon shipped a Seller Central UI change that moved or renamed an element my scraper depended on. Each time, the scraper ran, parsed nothing, and wrote zero rows. The fix was 30 minutes of DevTools and updating two CSS selectors. The lesson: log row counts on every run. A scrape that writes "0 rows" without throwing is a silent bug.</li>
+      <li><strong>Captcha still appears occasionally.</strong> Roughly once every six weeks, often clustering around long weekends or Amazon sales events when traffic patterns shift. With Fix #5 in place this is a non-event — the run aborts cleanly and next Monday's run usually succeeds.</li>
+      <li><strong>VPS IP reputation.</strong> If your VPS provider shares IPs across customers, eventually one of those customers does something Amazon doesn't like, and the whole IP range gets a tighter detection profile. I haven't needed residential proxies yet, but it's the next escalation if reputation becomes an issue.</li>
+    </ol>
+
+    <p>I deliberately didn't reach for residential proxies. They cost meaningfully more, add a third-party dependency to a system I want to keep simple, and sit in a legal grey zone for commercial scraping. The five fixes above were enough.</p>
+
+    <h2>The fix order, summarised</h2>
+
+    <ol>
+      <li><code>puppeteer-extra-plugin-stealth</code> + the <code>--disable-blink-features=AutomationControlled</code> Chrome flag</li>
+      <li>Persistent <code>userDataDir</code> profile so you look like a returning user, not a fresh login</li>
+      <li>A current, OS-matched User-Agent — set explicitly, not rotated</li>
+      <li>Randomised delays between actions (1.2–2.8 s) and between keystrokes (80–140 ms)</li>
+      <li>Detect captcha, stop, alert. Never auto-retry.</li>
+    </ol>
+
+    <p>In that order. Doing 5 without 1 doesn't help. Doing 1 without 5 means the first captcha escalates into a multi-day lockout.</p>
+
+    <p>The full architecture this scraper feeds — the PostgreSQL schema, the rank-history window-function trick, the Next.js dashboard on top — is in <a href="/blog/amazon-analytics-puppeteer-postgres.html">the Amazon Ads analytics writeup</a>, and the broader case study is on the <a href="/work/amazon-analytics/">Amazon Analytics work page</a>.</p>
+
+    <section class="blog-cta" style="margin-top:3rem">
+      <p>Building something on Amazon Seller Central and stuck on detection? <a href="mailto:Gauravthakur1k@gmail.com">Gauravthakur1k@gmail.com</a> · <a href="/services/">Services →</a></p>
+    </section>
+
+  </article>
+</main>
+
+<footer class="blog-footer">
+  <span>© 2026 Gaurav Kumar</span>
+  <a href="/blog/">← All posts</a>
+</footer>
+
+<script>
+(function(){
+  const nav = document.getElementById('nav');
+  if (nav){
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+  const btn = document.getElementById('navHamburger');
+  const overlay = document.getElementById('navOverlay');
+  if (btn && overlay){
+    const open = () => { btn.classList.add('open'); overlay.classList.add('open'); btn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; };
+    const close = () => { btn.classList.remove('open'); overlay.classList.remove('open'); btn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; };
+    btn.addEventListener('click', () => btn.classList.contains('open') ? close() : open());
+    overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  }
+})();
+</script>
+</body>
+</html>
