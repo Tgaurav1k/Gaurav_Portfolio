@@ -2,6 +2,9 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:auto}
 body{font-family:'Geist',ui-sans-serif,system-ui,-apple-system,sans-serif;background:#0a0a0a;color:#ededed;line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased;font-feature-settings:"ss01","cv11"}
+/* Perf: browser skips paint/layout work on off-screen sections — purely a render optimisation, identical visuals */
+.work{content-visibility:auto;contain-intrinsic-size:1px 800px}
+.services,.blog-preview-section,.contact{content-visibility:auto;contain-intrinsic-size:1px 600px}
 .serif{font-family:'Instrument Serif','Times New Roman',serif;font-style:italic;font-weight:400;letter-spacing:-.01em}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}

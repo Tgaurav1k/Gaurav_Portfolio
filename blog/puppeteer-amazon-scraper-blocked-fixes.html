@@ -136,7 +136,7 @@
     <figure class="blog-article-hero">
       <picture>
         <source srcset="/img/amazon-1.webp" type="image/webp">
-        <img src="/img/amazon-1.png" alt="Amazon India Analytics Dashboard — the system that depends on the scraper" width="1604" height="981">
+        <img src="/img/amazon-1.webp" alt="Amazon India Analytics Dashboard — the system that depends on the scraper" width="1604" height="981" decoding="async" loading="lazy">
       </picture>
       <figcaption>The dashboard the scraper feeds. None of this works if Seller Central locks you out on the second run.</figcaption>
     </figure>
@@ -354,5 +354,6 @@ if (await isCaptchaPage(page)) {
   }
 })();
 </script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
