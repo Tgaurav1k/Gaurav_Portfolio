@@ -2,18 +2,6 @@
   "_note": "Drafts queued for scheduled publishing. The GitHub Action runs daily and moves posts from _drafts/ to blog/ once publishDate has arrived. publishDate is YYYY-MM-DD in UTC. Posts can be re-ordered or rescheduled by editing this file.",
   "posts": [
     {
-      "draft": "postgres-window-functions-rank-history.html",
-      "publishDate": "2026-06-02",
-      "displayDate": "June 2, 2026",
-      "title": "The PostgreSQL window function that made rank history 50× faster",
-      "excerpt": "The query was 8 seconds. I needed it under 1. Replacing a self-join with a single LAG() window function — and changing the underlying table to suit it — got me to 0.15s. The schema decision behind the Amazon Analytics dashboard.",
-      "image": "/img/amazon-1.png",
-      "imageWebp": "/img/amazon-1.webp",
-      "imageAlt": "Amazon India Analytics Dashboard — the system this query feeds",
-      "tag": "PostgreSQL · Engineering",
-      "readTime": "6 min read"
-    },
-    {
       "draft": "react-audit-log-finance-dashboard.html",
       "publishDate": "2026-06-09",
       "displayDate": "June 9, 2026",
