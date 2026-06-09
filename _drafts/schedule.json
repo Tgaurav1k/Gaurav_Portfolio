@@ -2,18 +2,6 @@
   "_note": "Drafts queued for scheduled publishing. The GitHub Action runs daily and moves posts from _drafts/ to blog/ once publishDate has arrived. publishDate is YYYY-MM-DD in UTC. Posts can be re-ordered or rescheduled by editing this file.",
   "posts": [
     {
-      "draft": "react-audit-log-finance-dashboard.html",
-      "publishDate": "2026-06-09",
-      "displayDate": "June 9, 2026",
-      "title": "The audit log that won finance teams' trust",
-      "excerpt": "A bare audit_log table, three rules for what goes in it, and a React side-panel UI. The single feature that turned skepticism into adoption on month-end close — same product, same UX, same charts, one feature decided it.",
-      "image": "/img/dashbaord_prl.png",
-      "imageWebp": "/img/dashbaord_prl.webp",
-      "imageAlt": "Finance dashboard — React, Node and PostgreSQL with audit log",
-      "tag": "React · Node · Finance",
-      "readTime": "7 min read"
-    },
-    {
       "draft": "jwt-http-only-cookie-auth-react-node.html",
       "publishDate": "2026-06-16",
       "displayDate": "June 16, 2026",
