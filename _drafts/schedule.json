@@ -2,18 +2,6 @@
   "_note": "Drafts queued for scheduled publishing. The GitHub Action runs daily and moves posts from _drafts/ to blog/ once publishDate has arrived. publishDate is YYYY-MM-DD in UTC. Posts can be re-ordered or rescheduled by editing this file.",
   "posts": [
     {
-      "draft": "jwt-http-only-cookie-auth-react-node.html",
-      "publishDate": "2026-06-16",
-      "displayDate": "June 16, 2026",
-      "title": "The JWT + HTTP-only cookie auth I reuse on every project",
-      "excerpt": "Why localStorage JWTs are an XSS disaster, and the exact HTTP-only cookie + refresh token rotation setup I copy-paste into every React + Node project. Originally built for NeoMail, now in every dashboard since.",
-      "image": "/assets/neomail-1.png",
-      "imageWebp": "/assets/neomail-1.webp",
-      "imageAlt": "NeoMail email client — where this auth setup originated",
-      "tag": "Auth · React · Node",
-      "readTime": "8 min read"
-    },
-    {
       "draft": "mongodb-ttl-index-auto-expire.html",
       "publishDate": "2026-06-23",
       "displayDate": "June 23, 2026",
