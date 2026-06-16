@@ -18,7 +18,38 @@ function runHeroIntro() {
     opacity: 0, y: 20, duration: 0.8, ease: 'power3.out', stagger: 0.06, delay: 0.4
   });
 }
-runHeroIntro();
+// ---------- Intro loader: count 0 → 100, then reveal (lightweight, self-removing) ----------
+(function runLoader() {
+  const loader = document.getElementById('loader');
+  const num = document.getElementById('loaderNum');
+  const bar = document.getElementById('loaderBar');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // No loader / reduced motion → skip straight to hero intro
+  if (!loader || !num || reduce) {
+    if (loader) loader.remove();
+    runHeroIntro();
+    return;
+  }
+  document.documentElement.style.overflow = 'hidden'; // lock scroll while counting
+  gsap.to({ v: 0 }, {
+    v: 100, duration: 1.4, ease: 'power2.out',
+    onUpdate() {
+      const v = Math.round(this.targets()[0].v);
+      num.textContent = v;
+      if (bar) bar.style.width = v + '%';
+    },
+    onComplete() {
+      gsap.to(loader, {
+        opacity: 0, duration: 0.6, ease: 'power2.inOut',
+        onComplete() {
+          loader.remove();                              // drop the layer entirely
+          document.documentElement.style.overflow = '';
+          runHeroIntro();
+        }
+      });
+    }
+  });
+})();
 
 // ---------- Nav smooth scroll (native, not Lenis) ----------
 document.querySelectorAll('a[href^="#"]').forEach(a => {
