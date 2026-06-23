@@ -2,18 +2,6 @@
   "_note": "Drafts queued for scheduled publishing. The GitHub Action runs daily and moves posts from _drafts/ to blog/ once publishDate has arrived. publishDate is YYYY-MM-DD in UTC. Posts can be re-ordered or rescheduled by editing this file.",
   "posts": [
     {
-      "draft": "mongodb-ttl-index-auto-expire.html",
-      "publishDate": "2026-06-23",
-      "displayDate": "June 23, 2026",
-      "title": "MongoDB TTL indexes — auto-expire in one line, no cron",
-      "excerpt": "NeoMail expires old messages automatically with no cron, no scheduler, no cleanup code. The entire feature is one MongoDB index. When TTL indexes are the right tool, when they aren't, and the gotchas that catch most teams.",
-      "image": "/assets/neomail-1.png",
-      "imageWebp": "/assets/neomail-1.webp",
-      "imageAlt": "NeoMail — uses a MongoDB TTL index for message expiry",
-      "tag": "MongoDB · Database",
-      "readTime": "5 min read"
-    },
-    {
       "draft": "freelance-dashboard-onboarding-checklist.html",
       "publishDate": "2026-06-30",
       "displayDate": "June 30, 2026",
