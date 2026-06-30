@@ -1,17 +1,4 @@
 {
   "_note": "Drafts queued for scheduled publishing. The GitHub Action runs daily and moves posts from _drafts/ to blog/ once publishDate has arrived. publishDate is YYYY-MM-DD in UTC. Posts can be re-ordered or rescheduled by editing this file.",
-  "posts": [
-    {
-      "draft": "freelance-dashboard-onboarding-checklist.html",
-      "publishDate": "2026-06-30",
-      "displayDate": "June 30, 2026",
-      "title": "My 12-step onboarding doc for every freelance project",
-      "excerpt": "Every freelance dispute I've heard about traces back to something that should have been agreed in week one and wasn't. This is the document I fill in with every new client during the discovery week. 12 items, ~30 minutes, zero post-kickoff surprises.",
-      "image": "/img/profilepic.png",
-      "imageWebp": "/img/profilepic.webp",
-      "imageAlt": "Gaurav Kumar — freelance full-stack developer",
-      "tag": "Freelance · Process",
-      "readTime": "6 min read"
-    }
-  ]
+  "posts": []
 }
